@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamos Trend Color - Indicateur de Cycle Bitcoin | Mamos Crypto</title>
+    <meta name="description" content="Découvrez Mamos Trend Color, l'indicateur révolutionnaire pour anticiper les cycles Bitcoin. Détection des phases d'accumulation, tendance, euphorie et vente.">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* === RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Couleurs principales - Thème sombre Mamos */
+            --primary: #ffcc00;
+            --primary-dark: #e6b800;
+            --primary-light: #fff033;
+            --background: #0f0f0f;
+            --surface: #1c1c1c;
+            --surface-light: #2a2a2a;
+            --border: #333333;
+            --border-light: #444444;
+            --text-primary: #f0f0f0;
+            --text-secondary: #cccccc;
+            --text-muted: #999999;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            
+            /* Couleurs spéciales pour les phases */
+            --phase-accumulation: #27ae60;
+            --phase-trend: #3498db;
+            --phase-euphoria: #e74c3c;
+            --phase-sell: #8e44ad;
+            
+            /* Typographie */
+            --font-primary: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            /* Espacements */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            
+            /* Bordures */
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 20px;
+            
+            /* Ombres */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* === COMPOSANTS UTILITAIRES === */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-xl);
+            background: var(--primary);
+            color: var(--background);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--background);
+        }
+
+        .btn-large {
+            padding: var(--space-lg) var(--space-2xl);
+            font-size: 1.1rem;
+            font-weight: 900;
+        }
+
+        /* === HEADER === */
+        .header {
+            background: #121212;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-lg) var(--space-xl);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: var(--background);
+            font-size: 1.2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            gap: var(--space-xl);
+            list-style: none;
+        }
+
+        .nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            background: rgba(255, 204, 0, 0.1);
+            color: var(--primary-light);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .user-info {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* === BREADCRUMB === */
+        .breadcrumb {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: var(--space-md) 0;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 var(--space-sm);
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            background: linear-gradient(135deg, #121212 0%, var(--surface) 50%, #121212 100%);
+            padding: var(--space-2xl) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 204, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .indicator-icon-large {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--background);
+            margin: 0 auto var(--space-xl);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(45deg, var(--text-primary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto var(--space-xl);
+            line-height: 1.7;
+        }
+
+        /* === MAIN CONTENT === */
+        .main {
+            padding: var(--space-2xl) 0;
+        }
+
+        .content-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-xl);
+            position: relative;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xl);
+            text-align: center;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-2xl);
+            text-align: center;
+            font-style: italic;
+        }
+
+        .intro-text strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* === PHASES GRID === */
+        .phases-grid {
+            display: grid;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .phase-card {
+            background: var(--surface-light);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            transition: all 0.4s ease;
+        }
+
+        .phase-card.accumulation::before {
+            background: linear-gradient(90deg, var(--phase-accumulation), #2ecc71);
+        }
+
+        .phase-card.trend::before {
+            background: linear-gradient(90deg, var(--phase-trend), #5dade2);
+        }
+
+        .phase-card.euphoria::before {
+            background: linear-gradient(90deg, var(--phase-euphoria), #ec7063);
+        }
+
+        .phase-card.sell::before {
+            background: linear-gradient(90deg, var(--phase-sell), #bb8fce);
+        }
+
+        .phase-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+
+        .phase-icon {
+            font-size: 2.5rem;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-lg);
+            flex-shrink: 0;
+        }
+
+        .phase-card.accumulation .phase-icon {
+            background: rgba(39, 174, 96, 0.2);
+        }
+
+        .phase-card.trend .phase-icon {
+            background: rgba(52, 152, 219, 0.2);
+        }
+
+        .phase-card.euphoria .phase-icon {
+            background: rgba(231, 76, 60, 0.2);
+        }
+
+        .phase-card.sell .phase-icon {
+            background: rgba(142, 68, 173, 0.2);
+        }
+
+        .phase-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .phase-subtitle {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .phase-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .phase-description strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* === CONCLUSION SECTION === */
+        .conclusion-section {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--surface-light) 100%);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-xl);
+            text-align: center;
+            position: relative;
+        }
+
+        .conclusion-section::before {
+            content: '💡';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .conclusion-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .conclusion-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .conclusion-text strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* === PRICING SECTION === */
+        .pricing-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--background);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .pricing-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: var(--space-lg);
+        }
+
+        .price-tag {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: var(--space-md);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .price-promotion {
+            background: rgba(0, 0, 0, 0.2);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            display: inline-block;
+        }
+
+        .wallet-info {
+            background: rgba(0, 0, 0, 0.3);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin: var(--space-lg) 0;
+            font-family: var(--font-mono), monospace;
+        }
+
+        .wallet-address {
+            background: rgba(0, 0, 0, 0.4);
+            padding: var(--space-md);
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            word-break: break-all;
+            margin: var(--space-md) 0;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        .networks {
+            font-size: 0.9rem;
+            margin-top: var(--space-md);
+            font-weight: 700;
+        }
+
+        .email-info {
+            background: rgba(0, 0, 0, 0.2);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-lg);
+        }
+
+        /* === VIDEO SECTION === */
+        .video-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .video-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, var(--surface-light), var(--border));
+            border: 2px dashed var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 600;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .video-placeholder::before {
+            content: '🎥';
+            font-size: 3rem;
+        }
+
+        /* === FOOTER === */
+        .footer {
+            background: #121212;
+            border-top: 1px solid var(--border);
+            padding: var(--space-xl) 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer-tagline {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-version {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: var(--space-sm);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--space-md);
+            }
+
+            .header .container {
+                flex-direction: column;
+                gap: var(--space-lg);
+                padding: var(--space-lg) var(--space-md);
+            }
+
+            .nav {
+                gap: var(--space-lg);
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .user-menu {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+
+            .hero {
+                padding: var(--space-xl) 0;
+            }
+
+            .indicator-icon-large {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .content-section {
+                padding: var(--space-lg);
+            }
+
+            .phase-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .phase-icon {
+                align-self: center;
+            }
+
+            .price-tag {
+                font-size: 2.5rem;
+            }
+
+            .wallet-address {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* === SCROLL ANIMATIONS === */
+        .phase-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .phase-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">M</div>
+                <h1>Mamos</h1>
+            </a>
+            
+            <nav class="nav">
+                <a href="/">Accueil</a>
+                <a href="/analyses">Analyses</a>
+                <a href="/indicateurs" class="active">Indicateurs</a>
+                <a href="/admin">Admin</a>
+            </nav>
+            
+            <div class="user-menu">
+                <span class="user-info">Mon profil</span>
+                <a href="/logout" class="btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Se déconnecter</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="/indicateurs">Retour aux indicateurs</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="indicator-icon-large">🎨</div>
+            <h1>Mamos Trend Color</h1>
+            <p class="hero-subtitle">
+                Un indicateur révolutionnaire conçu pour les traders souhaitant comprendre et anticiper les cycles du marché Bitcoin.
+            </p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+        <div class="container">
+            <!-- INTRODUCTION -->
+            <section class="content-section">
+                <div class="intro-text">
+                    Découvrez <strong>"Mamos Trend Color"</strong>, un indicateur révolutionnaire conçu pour les traders souhaitant comprendre et anticiper les cycles du marché Bitcoin. Cet outil puissant se distingue par sa simplicité de lecture et son efficacité redoutable, vous aidant à prendre des décisions éclairées et stratégiques. Voici ce que <strong>"Mamos Trend Color"</strong> peut vous offrir :
+                </div>
+
+                <!-- PHASES GRID -->
+                <div class="phases-grid">
+                    <!-- Phase d'Accumulation -->
+                    <div class="phase-card accumulation">
+                        <div class="phase-header">
+                            <div class="phase-icon">🌿</div>
+                            <div>
+                                <h3 class="phase-title">Phase d'Accumulation</h3>
+                                <p class="phase-subtitle">(Bougies Vertes)</p>
+                            </div>
+                        </div>
+                        <div class="phase-description">
+                            <strong>"Mamos Trend Color"</strong> détecte la phase <strong>d'accumulation</strong> sur le marché Bitcoin en colorant les bougies en vert. Cette phase est cruciale pour identifier les périodes où le marché se prépare à une tendance haussière. Grâce à cette fonctionnalité, vous pouvez repérer les meilleures opportunités d'achat et vous positionner avantageusement avant le début d'une nouvelle tendance.
+                        </div>
+                    </div>
+
+                    <!-- Phase de Tendance -->
+                    <div class="phase-card trend">
+                        <div class="phase-header">
+                            <div class="phase-icon">📈</div>
+                            <div>
+                                <h3 class="phase-title">Phase de Tendance</h3>
+                                <p class="phase-subtitle">(Momentum Haussier)</p>
+                            </div>
+                        </div>
+                        <div class="phase-description">
+                            Lorsque le marché entre en phase de tendance, <strong>"Mamos Trend Color"</strong> vous alerte pour que vous puissiez maximiser vos gains. Cet indicateur vous aide à suivre les mouvements du marché et à profiter des tendances établies, augmentant ainsi vos chances de succès.
+                        </div>
+                    </div>
+
+                    <!-- Phase d'Euphorie -->
+                    <div class="phase-card euphoria">
+                        <div class="phase-header">
+                            <div class="phase-icon">🌟</div>
+                            <div>
+                                <h3 class="phase-title">Phase d'Euphorie</h3>
+                                <p class="phase-subtitle">(Bougies Rouges)</p>
+                            </div>
+                        </div>
+                        <div class="phase-description">
+                            La phase d'euphorie est marquée par des bougies rouges, indiquant que le marché est dans une période de hausse rapide et potentiellement exagérée. <strong>"Mamos Trend Color"</strong> vous aide à reconnaître ces moments critiques, vous permettant de prendre des décisions stratégiques pour protéger vos gains et éviter les pièges de l'euphorie du marché.
+                        </div>
+                    </div>
+
+                    <!-- Phase de Vente -->
+                    <div class="phase-card sell">
+                        <div class="phase-header">
+                            <div class="phase-icon">🚨</div>
+                            <div>
+                                <h3 class="phase-title">Triangle Rouge 🔻 de la "Muerté" ☠️</h3>
+                                <p class="phase-subtitle">(Phase de Vente)</p>
+                            </div>
+                        </div>
+                        <div class="phase-description">
+                            L'une des caractéristiques les plus appréciées de <strong>"Mamos Trend Color"</strong> est son triangle rouge de la "muerté". Cet indicateur visuel puissant vous avertit lorsqu'il est temps de sortir du marché, signalant une potentielle baisse significative des prix. Cette fonctionnalité est essentielle pour préserver vos gains et minimiser les pertes en détectant les points de vente idéaux.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONCLUSION -->
+            <section class="conclusion-section">
+                <h2 class="conclusion-title">Conclusion</h2>
+                <p class="conclusion-text">
+                    <strong>"Mamos Trend Color"</strong> est un indicateur de cycle simple mais extrêmement efficace, apprécié pour sa clarté et sa performance. Que vous soyez un trader débutant ou expérimenté, cet outil vous fournira les informations nécessaires pour naviguer avec succès sur le marché Bitcoin. Ne laissez pas les fluctuations du marché vous surprendre, équipez-vous de <strong>"Mamos Trend Color"</strong> et prenez le contrôle de vos investissements.
+                </p>
+            </section>
+
+            <!-- PRICING -->
+            <section class="pricing-section">
+                <div class="pricing-content">
+                    <h2 class="pricing-title">Comment Se Procurer l'Indicateur ?</h2>
+                    
+                    <div class="price-tag">99 USDC</div>
+                    <div class="price-promotion">🔥 Prix en PROMOTION 🔥</div>
+                    
+                    <div class="wallet-info">
+                        <p><strong>Adresse ETHEREUM ERC20 :</strong></p>
+                        <div class="wallet-address">0x49067a08c66b41a6a7e0d7d6d00988c5126de39a</div>
+                        <div class="networks">
+                            <strong>Compatible avec :</strong> OP • BSC • ARB • MATIC • AVAX • SONIC
+                        </div>
+                    </div>
+
+                    <div class="email-info">
+                        <p><strong>📧 Envoyez la preuve de transaction à :</strong></p>
+                        <p style="font-weight: 700; font-size: 1.1rem;">crypto.mamos@gmail.com</p>
+                        <p style="margin-top: 1rem; font-style: italic;">
+                            Vous recevrez un lien qui installera automatiquement l'indicateur sur votre compte TradingView.
+                        </p>
+                    </div>
+
+                    <a href="mailto:crypto.mamos@gmail.com" class="btn btn-large" style="background: rgba(0,0,0,0.3); margin-top: 1.5rem;">
+                        💬 Contacter par Email
+                    </a>
+                </div>
+            </section>
+
+            <!-- TUTORIAL VIDEO -->
+            <section class="video-section">
+                <h2 class="video-title">TUTO: Comment bien configurer le MAMOS TREND COLOR en 3 min ?</h2>
+                <div class="video-placeholder">
+                    <div>Vidéo tutoriel de configuration</div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted);">
+                        Guide complet pour optimiser votre indicateur
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-tagline">Révolutionnez votre trading avec Mamos Crypto</p>
+                <p class="footer-copyright">&copy; Mamos Crypto. 2024. All rights reserved.</p>
+                <p class="footer-version">Version 0.0.6</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation au scroll pour les cartes de phases
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 200); // Délai progressif
+                }
+            });
+        }, observerOptions);
+
+        // Observer toutes les cartes de phases
+        document.querySelectorAll('.phase-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Animation du logo au hover
+        document.querySelector('.logo-icon').addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1) rotate(5deg)';
+        });
+
+        document.querySelector('.logo-icon').addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) rotate(0deg)';
+        });
+
+        // Copie de l'adresse wallet au clic
+        document.querySelector('.wallet-address').addEventListener('click', function() {
+            navigator.clipboard.writeText(this.textContent).then(() => {
+                const originalText = this.textContent;
+                this.textContent = '✅ Adresse copiée !';
+                this.style.background = 'rgba(76, 175, 80, 0.3)';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = 'rgba(0, 0, 0, 0.4)';
+                }, 2000);
+            });
+        });
+
+        // Effet de parallaxe sur la section pricing
+        window.addEventListener('scroll', function() {
+            const pricingSection = document.querySelector('.pricing-section');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.2;
+            
+            if (pricingSection) {
+                pricingSection.style.transform = `translateY(${rate}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

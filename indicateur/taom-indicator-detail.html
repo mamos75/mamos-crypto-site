@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE AVENGERS OF MAMOS (TAOM) - Indicateur Tout-en-Un | Mamos Crypto</title>
+    <meta name="description" content="Découvrez THE AVENGERS OF MAMOS, l'indicateur ultime tout-en-un pour TradingView. Détection d'imbalances, Magic BOX multi-timeframe, moyennes mobiles et plus encore.">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* === RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Couleurs principales - Thème sombre Mamos */
+            --primary: #ffcc00;
+            --primary-dark: #e6b800;
+            --primary-light: #fff033;
+            --background: #0f0f0f;
+            --surface: #1c1c1c;
+            --surface-light: #2a2a2a;
+            --border: #333333;
+            --border-light: #444444;
+            --text-primary: #f0f0f0;
+            --text-secondary: #cccccc;
+            --text-muted: #999999;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            
+            /* Couleurs spéciales pour TAOM */
+            --feature-imbalance: #e74c3c;
+            --feature-magicbox: #9b59b6;
+            --feature-ma: #3498db;
+            --feature-balls: #f39c12;
+            --feature-patterns: #2ecc71;
+            
+            /* Typographie */
+            --font-primary: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            /* Espacements */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            
+            /* Bordures */
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 20px;
+            
+            /* Ombres */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* === COMPOSANTS UTILITAIRES === */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-xl);
+            background: var(--primary);
+            color: var(--background);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--background);
+        }
+
+        .btn-large {
+            padding: var(--space-lg) var(--space-2xl);
+            font-size: 1.1rem;
+            font-weight: 900;
+        }
+
+        /* === HEADER === */
+        .header {
+            background: #121212;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-lg) var(--space-xl);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: var(--background);
+            font-size: 1.2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            gap: var(--space-xl);
+            list-style: none;
+        }
+
+        .nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            background: rgba(255, 204, 0, 0.1);
+            color: var(--primary-light);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .user-info {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* === BREADCRUMB === */
+        .breadcrumb {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: var(--space-md) 0;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            background: linear-gradient(135deg, #121212 0%, var(--surface) 50%, #121212 100%);
+            padding: var(--space-2xl) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(255, 204, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .indicator-icon-large {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--background);
+            margin: 0 auto var(--space-xl);
+            box-shadow: var(--shadow-xl);
+            position: relative;
+        }
+
+        .indicator-icon-large::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, var(--primary), var(--primary-light), var(--primary), var(--primary-light));
+            border-radius: var(--radius-xl);
+            z-index: -1;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(45deg, var(--text-primary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto var(--space-xl);
+            line-height: 1.7;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            margin-top: var(--space-lg);
+        }
+
+        .hero-badge {
+            background: rgba(255, 204, 0, 0.1);
+            color: var(--primary);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-lg);
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+        }
+
+        /* === MAIN CONTENT === */
+        .main {
+            padding: var(--space-2xl) 0;
+        }
+
+        .content-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-xl);
+            position: relative;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-2xl);
+            text-align: center;
+        }
+
+        .intro-text strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* === FEATURES GRID === */
+        .features-grid {
+            display: grid;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .feature-card {
+            background: var(--surface-light);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card.imbalance::before {
+            background: linear-gradient(90deg, var(--feature-imbalance), #ff6b6b);
+        }
+
+        .feature-card.magicbox::before {
+            background: linear-gradient(90deg, var(--feature-magicbox), #c44cb8);
+        }
+
+        .feature-card.ma::before {
+            background: linear-gradient(90deg, var(--feature-ma), #5dade2);
+        }
+
+        .feature-card.balls::before {
+            background: linear-gradient(90deg, var(--feature-balls), #f7c35f);
+        }
+
+        .feature-card.patterns::before {
+            background: linear-gradient(90deg, var(--feature-patterns), #58d68d);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-lg);
+            flex-shrink: 0;
+        }
+
+        .feature-card.imbalance .feature-icon {
+            background: rgba(231, 76, 60, 0.2);
+        }
+
+        .feature-card.magicbox .feature-icon {
+            background: rgba(155, 89, 182, 0.2);
+        }
+
+        .feature-card.ma .feature-icon {
+            background: rgba(52, 152, 219, 0.2);
+        }
+
+        .feature-card.balls .feature-icon {
+            background: rgba(243, 156, 18, 0.2);
+        }
+
+        .feature-card.patterns .feature-icon {
+            background: rgba(46, 204, 113, 0.2);
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .feature-number {
+            background: var(--primary);
+            color: var(--background);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.9rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .feature-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .feature-description strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* === CONCLUSION SECTION === */
+        .conclusion-section {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--surface-light) 100%);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-xl);
+            text-align: center;
+            position: relative;
+        }
+
+        .conclusion-section::before {
+            content: '🎯';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .conclusion-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .conclusion-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .conclusion-text strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* === PRICING SECTION === */
+        .pricing-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--background);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .pricing-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: var(--space-lg);
+        }
+
+        .price-tag {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: var(--space-md);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .price-promotion {
+            background: rgba(0, 0, 0, 0.2);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            display: inline-block;
+        }
+
+        .wallet-info {
+            background: rgba(0, 0, 0, 0.3);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin: var(--space-lg) 0;
+            font-family: monospace;
+        }
+
+        .wallet-address {
+            background: rgba(0, 0, 0, 0.4);
+            padding: var(--space-md);
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            word-break: break-all;
+            margin: var(--space-md) 0;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .wallet-address:hover {
+            background: rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .networks {
+            font-size: 0.9rem;
+            margin-top: var(--space-md);
+            font-weight: 700;
+        }
+
+        .email-info {
+            background: rgba(0, 0, 0, 0.2);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-lg);
+        }
+
+        /* === VIDEO SECTION === */
+        .video-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .video-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, var(--surface-light), var(--border));
+            border: 2px dashed var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 600;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .video-placeholder::before {
+            content: '🎥';
+            font-size: 3rem;
+        }
+
+        /* === FOOTER === */
+        .footer {
+            background: #121212;
+            border-top: 1px solid var(--border);
+            padding: var(--space-xl) 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer-tagline {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--space-md);
+            }
+
+            .header .container {
+                flex-direction: column;
+                gap: var(--space-lg);
+                padding: var(--space-lg) var(--space-md);
+            }
+
+            .nav {
+                gap: var(--space-lg);
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .user-menu {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+
+            .hero {
+                padding: var(--space-xl) 0;
+            }
+
+            .indicator-icon-large {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .content-section {
+                padding: var(--space-lg);
+            }
+
+            .feature-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .feature-icon {
+                align-self: center;
+            }
+
+            .price-tag {
+                font-size: 2.5rem;
+            }
+
+            .wallet-address {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* === SCROLL ANIMATIONS === */
+        .feature-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">M</div>
+                <h1>Mamos</h1>
+            </a>
+            
+            <nav class="nav">
+                <a href="/">Accueil</a>
+                <a href="/analyses">Analyses</a>
+                <a href="/indicateurs" class="active">Indicateurs</a>
+                <a href="/admin">Admin</a>
+            </nav>
+            
+            <div class="user-menu">
+                <span class="user-info">Mon profil</span>
+                <a href="/logout" class="btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Se déconnecter</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="/indicateurs">Retour aux indicateurs</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="indicator-icon-large">⚡</div>
+            <h1>THE AVENGERS OF MAMOS</h1>
+            <p class="hero-subtitle">
+                L'indicateur ultime conçu pour les traders exigeants qui recherchent des outils performants et fiables pour améliorer leurs stratégies de trading.
+            </p>
+            <div class="hero-badges">
+                <span class="hero-badge">🌟 Tout-en-Un</span>
+                <span class="hero-badge">💰 Économise les abonnements</span>
+                <span class="hero-badge">📊 Multi-Timeframe</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+        <div class="container">
+            <!-- INTRODUCTION -->
+            <section class="content-section">
+                <div class="intro-text">
+                    Découvrez <strong>THE AVENGERS OF MAMOS</strong>, l'indicateur ultime conçu pour les traders exigeants qui recherchent des outils performants et fiables pour améliorer leurs stratégies de trading. Cet indicateur puissant combine plusieurs fonctionnalités avancées pour vous offrir une analyse technique précise et complète. Et la meilleure partie ? <strong>Plus besoin de payer un abonnement à TradingView !</strong> Économisez tout en accédant à un outil tout-en-un exceptionnel.
+                </div>
+
+                <!-- FEATURES GRID -->
+                <div class="features-grid">
+                    <!-- Feature 1: Détection des Imbalances -->
+                    <div class="feature-card imbalance">
+                        <div class="feature-header">
+                            <div class="feature-icon">🔍</div>
+                            <div>
+                                <div class="feature-number">1</div>
+                                <h3 class="feature-title">Détection des Imbalances</h3>
+                            </div>
+                        </div>
+                        <div class="feature-description">
+                            <strong>"THE AVENGERS OF MAMOS"</strong> est équipé d'un système de détection des imbalances sophistiqué, conçu pour identifier et visualiser les zones de déséquilibre sur plusieurs unités de temps. Ces zones sont cruciales pour anticiper les mouvements du marché et identifier les opportunités de trading potentielles. L'indicateur vous aide à repérer ces zones avec précision, vous permettant ainsi de prendre des décisions éclairées.
+                        </div>
+                    </div>
+
+                    <!-- Feature 2: Magic BOX Multi Time Frame -->
+                    <div class="feature-card magicbox">
+                        <div class="feature-header">
+                            <div class="feature-icon">📦</div>
+                            <div>
+                                <div class="feature-number">2</div>
+                                <h3 class="feature-title">Magic BOX Multi Time Frame</h3>
+                            </div>
+                        </div>
+                        <div class="feature-description">
+                            Notre <strong>"Magic BOX"</strong> est un outil polyvalent qui fonctionne sur plusieurs unités de temps. Il vous permet de visualiser les zones de support et de résistance clés, les zones de consolidation, et les points d'inflexion importants. En analysant plusieurs time frames, vous obtenez une vue d'ensemble complète du marché, vous aidant à ajuster vos stratégies de trading en fonction des tendances à court, moyen et long terme.
+                        </div>
+                    </div>
+
+                    <!-- Feature 3: Moyennes Mobiles -->
+                    <div class="feature-card ma">
+                        <div class="feature-header">
+                            <div class="feature-icon">📊</div>
+                            <div>
+                                <div class="feature-number">3</div>
+                                <h3 class="feature-title">Jusqu'à 6 Moyennes Mobiles Multi Time Frame</h3>
+                            </div>
+                        </div>
+                        <div class="feature-description">
+                            Avec <strong>"THE AVENGERS OF MAMOS"</strong>, vous pouvez suivre jusqu'à six moyennes mobiles sur différentes unités de temps simultanément. Cela vous permet de mieux comprendre les tendances du marché et de déterminer les niveaux de support et de résistance dynamiques. Les moyennes mobiles multi time frame sont idéales pour identifier les points d'entrée et de sortie optimaux et pour ajuster vos positions en fonction des conditions du marché.
+                        </div>
+                    </div>
+
+                    <!-- Feature 4: Boules Bleues & Jaunes -->
+                    <div class="feature-card balls">
+                        <div class="feature-header">
+                            <div class="feature-icon">🔵</div>
+                            <div>
+                                <div class="feature-number">4</div>
+                                <h3 class="feature-title">Boules Bleues & Jaunes 🔵🟡</h3>
+                            </div>
+                        </div>
+                        <div class="feature-description">
+                            Les boules bleues et jaunes de notre indicateur sont des marqueurs visuels puissants qui indiquent les zones de retournement potentiel ou les zones de trading range. Les <strong>boules bleues</strong> signalent les zones où un retournement de tendance est probable ou de trading range, potentiel point bas pour les boules bleues, tandis que les <strong>boules jaunes</strong> indiquent les potentiels points hauts. Ces indicateurs visuels vous aident à repérer rapidement les opportunités de trading et à prendre des décisions stratégiques.
+                        </div>
+                    </div>
+
+                    <!-- Feature 5: Patterns de Retournement -->
+                    <div class="feature-card patterns">
+                        <div class="feature-header">
+                            <div class="feature-icon">🔄</div>
+                            <div>
+                                <div class="feature-number">5</div>
+                                <h3 class="feature-title">Patterns de Retournement ou Continuation</h3>
+                            </div>
+                        </div>
+                        <div class="feature-description">
+                            <strong>"THE AVENGERS OF MAMOS"</strong> intègre des algorithmes avancés pour détecter les patterns de retournement et de continuation sur les chandeliers japonais. Ces patterns sont essentiels pour interpréter les mouvements du marché et pour anticiper les inversions ou les poursuites de tendances. L'indicateur vous offre une analyse détaillée des formations de chandeliers, vous permettant ainsi de comprendre les dynamiques du marché et de prévoir les mouvements futurs.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONCLUSION -->
+            <section class="conclusion-section">
+                <h2 class="conclusion-title">Conclusion</h2>
+                <p class="conclusion-text">
+                    <strong>"THE AVENGERS OF MAMOS"</strong> est bien plus qu'un simple indicateur, c'est un véritable outil de trading avancé qui vous offre une multitude de fonctionnalités pour améliorer vos analyses et stratégies de trading. Que vous soyez un trader débutant ou expérimenté, cet indicateur vous aidera à prendre des décisions plus informées et à maximiser vos profits. Ne laissez pas les opportunités vous échapper, équipez-vous de <strong>"THE AVENGERS OF MAMOS"</strong> et dominez le marché dès aujourd'hui.
+                </p>
+            </section>
+
+            <!-- PRICING -->
+            <section class="pricing-section">
+                <div class="pricing-content">
+                    <h2 class="pricing-title">Comment Se Procurer l'Indicateur ?</h2>
+                    
+                    <div class="price-tag">99 USDC</div>
+                    <div class="price-promotion">🔥 Prix en PROMOTION 🔥</div>
+                    
+                    <div class="wallet-info">
+                        <p><strong>Adresse ETHEREUM ERC20 :</strong></p>
+                        <div class="wallet-address">0x49067a08c66b41a6a7e0d7d6d00988c5126de39a</div>
+                        <div class="networks">
+                            <strong>Compatible avec :</strong> OP • BSC • ARB • MATIC • AVAX • SONIC
+                        </div>
+                    </div>
+
+                    <div class="email-info">
+                        <p><strong>📧 Envoyez la preuve de transaction à :</strong></p>
+                        <p style="font-weight: 700; font-size: 1.1rem;">crypto.mamos@gmail.com</p>
+                        <p style="margin-top: 1rem; font-style: italic;">
+                            Vous recevrez un lien qui installera automatiquement l'indicateur sur votre compte TradingView.
+                        </p>
+                    </div>
+
+                    <a href="mailto:crypto.mamos@gmail.com" class="btn btn-large" style="background: rgba(0,0,0,0.3); margin-top: 1.5rem;">
+                        💬 Contacter par Email
+                    </a>
+                </div>
+            </section>
+
+            <!-- TUTORIAL VIDEO -->
+            <section class="video-section">
+                <h2 class="video-title">TUTO: Comment bien configurer THE AVENGERS OF MAMOS en 10 min ?</h2>
+                <div class="video-placeholder">
+                    <div>Vidéo tutoriel de configuration</div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted);">
+                        Guide complet pour maîtriser toutes les fonctionnalités
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-tagline">Révolutionnez votre trading avec Mamos Crypto</p>
+                <p class="footer-copyright">&copy; Mamos Crypto. 2024. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation au scroll pour les cartes de fonctionnalités
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 200); // Délai progressif
+                }
+            });
+        }, observerOptions);
+
+        // Observer toutes les cartes de fonctionnalités
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Animation du logo au hover
+        document.querySelector('.logo-icon').addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1) rotate(5deg)';
+        });
+
+        document.querySelector('.logo-icon').addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) rotate(0deg)';
+        });
+
+        // Copie de l'adresse wallet au clic
+        document.querySelector('.wallet-address').addEventListener('click', function() {
+            navigator.clipboard.writeText(this.textContent).then(() => {
+                const originalText = this.textContent;
+                this.textContent = '✅ Adresse copiée !';
+                this.style.background = 'rgba(76, 175, 80, 0.3)';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = 'rgba(0, 0, 0, 0.4)';
+                }, 2000);
+            });
+        });
+
+        // Animation de l'icône principale
+        const iconLarge = document.querySelector('.indicator-icon-large');
+        iconLarge.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05) rotate(5deg)';
+        });
+
+        iconLarge.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) rotate(0deg)';
+        });
+
+        // Effet de parallaxe léger sur le hero
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const rate = scrolled * -0.1;
+            
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
