@@ -117,9 +117,32 @@
             transform: translateY(-2px);
         }
 
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--surface);
+            padding: 20px 0;
+            margin-top: 70px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 10px;
+        }
+
         /* Hero Section */
         .hero {
-            padding: 120px 0 80px;
+            padding: 80px 0;
             background: linear-gradient(135deg, var(--background) 0%, var(--surface) 50%, var(--background) 100%);
             position: relative;
             overflow: hidden;
@@ -656,17 +679,6 @@
         }
 
         /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -691,6 +703,15 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <a href="#pricing" class="cta-nav">🚀 Acheter maintenant</a>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="index.html">← Retour à l'accueil</a>
+            <span>/</span>
+            <span>Mamos Trend Color</span>
         </div>
     </nav>
 
@@ -734,7 +755,7 @@
             <section class="section animate-on-scroll">
                 <h2 class="section-title">Comment Fonctionne Mamos Trend Color ?</h2>
                 <p class="section-subtitle">
-                    Un indicateur révolutionnaire qui transforme l'analyse Bitcoin en un jeu d'enfant. Découvrez les 4 phases essentielles du marché.
+                    Un indicateur révolutionnaire qui transforme l'analyse Bitcoin en un jeu d'enfant. Découvrez les 3 phases essentielles du marché.
                 </p>
             </section>
 
@@ -860,7 +881,7 @@
                 <div class="pricing-content">
                     <div class="pricing-badge">🔥 OFFRE LIMITÉE</div>
                     <h2 class="pricing-title">Mamos Trend Color</h2>
-                    <div class="price-display">99€</div>
+                    <div class="price-display">99 USDC</div>
                     <div class="price-period">Paiement unique - Utilisation à vie</div>
                     
                     <ul class="pricing-features">
@@ -872,8 +893,23 @@
                         <li>Mises à jour gratuites à vie</li>
                     </ul>
                     
-                    <a href="mailto:crypto.mamos@gmail.com?subject=Achat%20Mamos%20Trend%20Color" class="btn btn-large" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white;">
-                        🚀 Acheter Maintenant
+                    <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 15px; margin: 30px 0;">
+                        <h3 style="margin-bottom: 20px;">💳 Comment Se Procurer l'Indicateur ?</h3>
+                        <p style="margin-bottom: 15px;">Le prix est actuellement en <strong>promotion</strong> à 99 USDC, à envoyer à cette adresse <strong>ETHEREUM ERC20</strong> :</p>
+                        
+                        <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                            <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px; font-family: monospace; word-break: break-all; border: 1px dashed rgba(255,255,255,0.3); cursor: pointer;" onclick="copyWalletAddress()">
+                                0x49067a08c66b41a6a7e0d7d6d00988c5126de39a
+                            </div>
+                            <p style="margin-top: 10px; font-size: 0.9rem;"><strong>Cette adresse est compatible avec :</strong> OP • BSC • ARB • MATIC • AVAX • SONIC</p>
+                        </div>
+                        
+                        <p style="margin-bottom: 15px;">Envoyez la preuve de transaction à cette adresse email: <strong>crypto.mamos@gmail.com</strong></p>
+                        <p style="font-style: italic; opacity: 0.9;"><em>Vous recevrez un lien qui installera automatiquement l'indicateur sur votre compte TradingView.</em></p>
+                    </div>
+                    
+                    <a href="mailto:crypto.mamos@gmail.com?subject=Achat%20Mamos%20Trend%20Color&body=Bonjour,%0D%0A%0D%0AJe%20souhaite%20acheter%20l%27indicateur%20Mamos%20Trend%20Color%20pour%2099%20USDC.%0D%0A%0D%0AJe%20vais%20envoyer%20le%20paiement%20%C3%A0%20l%27adresse%20:%200x49067a08c66b41a6a7e0d7d6d00988c5126de39a%0D%0A%0D%0ACordialement" class="btn btn-large" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white;">
+                        🚀 Commander Maintenant
                     </a>
                     
                     <div class="guarantee">
