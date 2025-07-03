@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Mamos Crypto | Questions fréquentes sur nos indicateurs</title>
+    <meta name="description" content="Trouvez rapidement les réponses à vos questions sur les indicateurs Mamos Crypto : achat, installation, utilisation et support.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .search-section {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #667eea;
+            font-size: 20px;
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            background: #f8f9ff;
+            color: #667eea;
+            padding: 10px 20px;
+            border: 2px solid #e0e6ff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .faq-content {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .faq-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            color: #667eea;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e6ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #e0e6ff;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+        
+        .faq-question {
+            background: #f8f9ff;
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #f0f3ff;
+        }
+        
+        .faq-question.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .faq-icon {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .faq-answer.open {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        .faq-answer p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .faq-answer ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .faq-answer li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .success-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .contact-cta {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-item {
+            background: #f8f9ff;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #e0e6ff;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .categories {
+                gap: 10px;
+            }
+            
+            .category-btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <nav class="nav">
+                <div class="logo">Mamos Crypto</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="docs.html">Documentation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <h1>Questions fréquentes</h1>
+            <p class="subtitle">Trouvez rapidement les réponses à vos questions</p>
+        </section>
+
+        <section class="search-section">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Rechercher une question..." id="searchInput">
+                <span class="search-icon">🔍</span>
+            </div>
+            
+            <div class="categories">
+                <button class="category-btn active" data-category="all">🔍 Toutes</button>
+                <button class="category-btn" data-category="achat">💳 Achat</button>
+                <button class="category-btn" data-category="installation">📦 Installation</button>
+                <button class="category-btn" data-category="utilisation">🎯 Utilisation</button>
+                <button class="category-btn" data-category="technique">🔧 Technique</button>
+                <button class="category-btn" data-category="support">🆘 Support</button>
+            </div>
+
+            <div class="quick-stats">
+                <div class="stat-item">
+                    <div class="stat-number">4.5/5</div>
+                    <p>Note Trustpilot</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24h</div>
+                    <p>Temps de réponse</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <p>Clients satisfaits</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <p>Utilisateurs actifs</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-content">
+            <!-- Section Achat -->
+            <div class="faq-section" data-category="achat">
+                <h2 class="section-title">💳 Achat et Paiement</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Comment acheter vos indicateurs ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>L'achat est simple et sécurisé :</p>
+                        <ul>
+                            <li><strong>PayPal :</strong> Paiement instantané par carte ou compte PayPal</li>
+                            <li><strong>Crypto :</strong> Bitcoin, Ethereum, USDT acceptés</li>
+                            <li><strong>Virement :</strong> Pour les gros montants (nous contacter)</li>
+                        </ul>
+                        <div class="success-box">
+                            <p><strong>Après paiement :</strong> Vous recevez immédiatement les liens TradingView par email + guide d'installation complet.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quel est le prix des indicateurs ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Prix actuels :</strong></p>
+                        <ul>
+                            <li>🟢 <strong>Mamos Trend Color :</strong> 99€ (paiement unique)</li>
+                            <li>⚔️ <strong>The Avengers of Mamos :</strong> 99€ (paiement unique)</li>
+                            <li>🎯 <strong>Pack complet :</strong> 179€ (économisez 19€)</li>
+                        </ul>
+                        <div class="highlight">
+                            <p><strong>Aucun abonnement !</strong> Paiement unique, utilisation à vie + mises à jour gratuites.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Proposez-vous des remboursements ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Garantie 30 jours :</strong></p>
+                        <ul>
+                            <li>Remboursement intégral si non satisfait</li>
+                            <li>Aucune question posée, procédure simple</li>
+                            <li>Contactez notre support par email</li>
+                        </ul>
+                        <div class="success-box">
+                            <p><strong>Témoignage client :</strong> "J'ai acheté les deux indicateurs et ils ont été rentabilisés le jour même !" - Utilisateur vérifié</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Installation -->
+            <div class="faq-section" data-category="installation">
+                <h2 class="section-title">📦 Installation et Configuration</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Comment installer les indicateurs sur TradingView ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Installation en 3 étapes :</strong></p>
+                        <ul>
+                            <li><strong>Étape 1 :</strong> Cliquez sur le lien reçu par email</li>
+                            <li><strong>Étape 2 :</strong> Connectez-vous à votre compte TradingView</li>
+                            <li><strong>Étape 3 :</strong> L'indicateur s'ajoute automatiquement à "Mes scripts"</li>
+                        </ul>
+                        <div class="highlight">
+                            <p><strong>Vidéo tutorial :</strong> Nous fournissons un guide vidéo complet pour une installation sans erreur.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Ai-je besoin d'un compte TradingView payant ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Non ! Le compte gratuit suffit.</strong></p>
+                        <ul>
+                            <li>✅ Fonctionne avec TradingView gratuit</li>
+                            <li>✅ Pas de limitation sur les indicateurs</li>
+                            <li>✅ Accès mobile inclus</li>
+                        </ul>
+                        <div class="success-box">
+                            <p><strong>Bonus :</strong> Nos indicateurs vous donnent accès à certaines fonctionnalités premium de TradingView gratuitement !</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Les indicateurs fonctionnent-ils sur mobile ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Oui, parfaitement !</strong></p>
+                        <ul>
+                            <li>📱 Application TradingView iOS/Android</li>
+                            <li>🔄 Synchronisation automatique</li>
+                            <li>🔔 Alertes push en temps réel</li>
+                            <li>📊 Même précision qu'en desktop</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Utilisation -->
+            <div class="faq-section" data-category="utilisation">
+                <h2 class="section-title">🎯 Utilisation et Stratégies</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quelle est la différence entre les deux indicateurs ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Deux approches complémentaires :</strong></p>
+                        <ul>
+                            <li><strong>🟢 Mamos Trend Color :</strong>
+                                <ul>
+                                    <li>Spécialisé Bitcoin, timeframe weekly</li>
+                                    <li>Idéal investissement long terme</li>
+                                    <li>Ultra simple : vert = achat, rouge = vente</li>
+                                    <li>Triangle "muerte" = sortie immédiate</li>
+                                </ul>
+                            </li>
+                            <li><strong>⚔️ The Avengers of Mamos :</strong>
+                                <ul>
+                                    <li>Multi-actifs (crypto, forex, actions)</li>
+                                    <li>Trading court/moyen terme</li>
+                                    <li>Analyse technique complète</li>
+                                    <li>Support/résistances automatiques</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="highlight">
+                            <p><strong>Stratégie recommandée :</strong> Utilisez les deux ensemble ! Trend Color pour l'investissement, Avengers pour le trading actif.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quel timeframe utiliser pour chaque indicateur ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Configuration optimale :</strong></p>
+                        <ul>
+                            <li><strong>Mamos Trend Color :</strong>
+                                <ul>
+                                    <li>🕐 <strong>Weekly (1W) OBLIGATOIRE</strong></li>
+                                    <li>🎯 Actif : BTC/USDT uniquement</li>
+                                    <li>📊 Autres timeframes = signaux erronés</li>
+                                </ul>
+                            </li>
+                            <li><strong>The Avengers of Mamos :</strong>
+                                <ul>
+                                    <li>🟢 <strong>Débutant :</strong> 4H ou 1D</li>
+                                    <li>🟡 <strong>Intermédiaire :</strong> 1H à 4H</li>
+                                    <li>🔴 <strong>Expert :</strong> 15M à 1H (scalping)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quelle précision peut-on attendre ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Résultats basés sur nos backtests :</strong></p>
+                        <ul>
+                            <li><strong>Mamos Trend Color :</strong> 95% de réussite sur cycles Bitcoin</li>
+                            <li><strong>The Avengers :</strong> 70-80% selon configuration</li>
+                        </ul>
+                        <div class="success-box">
+                            <p><strong>Témoignage :</strong> "99% de réussite ! Le Trend Color ne m'a jamais fait défaut" - Client vérifié</p>
+                        </div>
+                        <div class="highlight">
+                            <p><strong>Important :</strong> Aucun indicateur n'est fiable à 100%. Toujours utiliser une gestion du risque appropriée.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Technique -->
+            <div class="faq-section" data-category="technique">
+                <h2 class="section-title">🔧 Support Technique</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>L'indicateur ne s'affiche pas sur mon graphique</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Solutions rapides :</strong></p>
+                        <ul>
+                            <li>✅ Vérifiez l'échelle : Clic droit > "Ajuster à l'écran"</li>
+                            <li>✅ Bon timeframe : 1W pour Trend Color</li>
+                            <li>✅ Attendez la clôture de bougie</li>
+                            <li>✅ Rafraîchissez la page (F5)</li>
+                        </ul>
+                        <div class="highlight">
+                            <p><strong>Toujours pas visible ?</strong> Contactez notre support avec une capture d'écran, nous résolvons sous 24h !</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Puis-je personnaliser les couleurs et alertes ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Totalement personnalisable !</strong></p>
+                        <ul>
+                            <li>🎨 <strong>Couleurs :</strong> Changez tout dans Style > Couleurs</li>
+                            <li>🔔 <strong>Alertes :</strong> Email, SMS, webhook possibles</li>
+                            <li>⚙️ <strong>Seuils :</strong> Ajustez selon votre profil de risque</li>
+                            <li>💾 <strong>Templates :</strong> Sauvegardez vos configurations</li>
+                        </ul>
+                        <div class="success-box">
+                            <p><strong>Guide inclus :</strong> Tutoriel vidéo complet pour la personnalisation avancée.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Les indicateurs consomment-ils beaucoup de ressources ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Optimisés pour la performance :</strong></p>
+                        <ul>
+                            <li>⚡ Code optimisé, calculs rapides</li>
+                            <li>📱 Fonctionne sur mobile sans ralentir</li>
+                            <li>🔋 Consommation batterie minimale</li>
+                            <li>💾 Pas de stockage local requis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Support -->
+            <div class="faq-section" data-category="support">
+                <h2 class="section-title">🆘 Support et Communauté</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Comment obtenir de l'aide rapidement ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Plusieurs options selon l'urgence :</strong></p>
+                        <ul>
+                            <li>🚀 <strong>Discord (instantané) :</strong> Communauté active 24/7</li>
+                            <li>📧 <strong>Email (24h max) :</strong> support@mamoscrypto.fr</li>
+                            <li>📚 <strong>Documentation :</strong> 99% des questions résolues</li>
+                            <li>📺 <strong>Vidéos YouTube :</strong> Tutoriels détaillés</li>
+                        </ul>
+                        <div class="success-box">
+                            <p><strong>Support francophone :</strong> Équipe française, réponses rapides et adaptées.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Qu'est-ce que la communauté Discord offre ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Plus qu'un support, une vraie communauté :</strong></p>
+                        <ul>
+                            <li>📢 <strong>Analyses live :</strong> Mamos partage ses trades en temps réel</li>
+                            <li>🎓 <strong>Formation continue :</strong> Webinaires et masterclass</li>
+                            <li>🤝 <strong>Entraide :</strong> Questions/réponses entre membres</li>
+                            <li>🚨 <strong>Alertes VIP :</strong> Signaux importants en avant-première</li>
+                            <li>🏆 <strong>Challenges :</strong> Concours de trading communautaires</li>
+                        </ul>
+                        <div class="highlight">
+                            <p><strong>Accès gratuit !</strong> Inclus avec l'achat des indicateurs, pas d'abonnement supplémentaire.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Recevez-vous des mises à jour des indicateurs ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Mises à jour gratuites à vie :</strong></p>
+                        <ul>
+                            <li>🆕 <strong>Nouvelles fonctionnalités :</strong> Ajoutées régulièrement</li>
+                            <li>🐛 <strong>Corrections :</strong> Bugs résolus rapidement</li>
+                            <li>🎯 <strong>Optimisations :</strong> Précision améliorée en continu</li>
+                            <li>📱 <strong>Compatibilité :</strong> Suivi des évolutions TradingView</li>
+                        </ul>
+                        <div class="success-box">
+                            <p><strong>Notification automatique :</strong> Prévenus par email à chaque mise à jour importante.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-cta">
+            <h2 style="color: white; margin-bottom: 15px;">Votre question n'est pas ici ?</h2>
+            <p style="font-size: 18px; margin-bottom: 25px; opacity: 0.9;">
+                Notre équipe est là pour vous aider ! Réponse garantie sous 24h.
+            </p>
+            <a href="contact.html" class="cta-button">📧 Contacter le support</a>
+            <a href="https://discord.gg/mamoscrypto" class="cta-button">💬 Rejoindre Discord</a>
+            <a href="docs.html" class="cta-button">📚 Documentation complète</a>
+        </section>
+    </div>
+
+    <script>
+        // Recherche dans les FAQ
+        const searchInput = document.getElementById('searchInput');
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Filtrage par catégorie
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const faqSections = document.querySelectorAll('.faq-section');
+        
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = this.dataset.category;
+                
+                // Update active button
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show/hide sections
+                faqSections.forEach(section => {
+                    if (category === 'all' || section.dataset.category === category) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Accordéon FAQ
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isOpen = answer.classList.contains('open');
+                
+                // Fermer toutes les autres réponses
+                document.querySelectorAll('.faq-answer').forEach(a => {
+                    a.classList.remove('open');
+                });
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                });
+                
+                // Ouvrir/fermer la réponse actuelle
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    this.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
