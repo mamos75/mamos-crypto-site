@@ -372,6 +372,144 @@
             content: "✅";
             font-size: 16px;
         }
+
+        /* Blog Section Styles */
+        .blog-section {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e6ecff 100%);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(102,126,234,0.15);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="blog-pattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23blog-pattern)"/></svg>');
+        }
+
+        .blog-content {
+            padding: 30px;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .blog-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .blog-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .blog-title a:hover {
+            color: #667eea;
+        }
+
+        .blog-excerpt {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .blog-read-more {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.3s ease;
+        }
+
+        .blog-read-more:hover {
+            gap: 10px;
+        }
+
+        .blog-cta {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .btn-blog {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-blog:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102,126,234,0.3);
+        }
         
         .pricing {
             background: linear-gradient(135deg, #f8f9ff 0%, #e6ecff 100%);
@@ -656,6 +794,15 @@
             .pricing-card.featured {
                 transform: none;
             }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -667,6 +814,7 @@
             <ul class="nav-links">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#indicateurs">Indicateurs</a></li>
+                <li><a href="#blog">Blog</a></li>
                 <li><a href="#pricing">Prix</a></li>
                 <li><a href="about.html">À propos</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -766,6 +914,88 @@
                     </ul>
                     <a href="taom-detail.html" style="color: #667eea; text-decoration: none; font-weight: 600; margin-top: 15px; display: inline-block;">📖 Voir les détails →</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section blog-section" id="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Derniers Articles</h2>
+                <p class="section-subtitle">Guides experts, analyses de marché et stratégies de trading pour maximiser vos profits</p>
+            </div>
+            
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        📈 Guide Cycles Bitcoin 2025
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span>📅 2 janvier 2025</span>
+                            <span>⏱️ 12 min</span>
+                            <div class="blog-tag">Éducation</div>
+                        </div>
+                        <h3 class="blog-title">
+                            <a href="blog-article-seo.html">Comment Détecter les Cycles Bitcoin : Guide Complet 2025</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            Découvrez comment identifier et exploiter les 4 phases des cycles Bitcoin pour maximiser vos gains. Guide expert avec méthodes éprouvées, indicateurs avancés et stratégies professionnelles.
+                        </p>
+                        <a href="blog-article-seo.html" class="blog-read-more">
+                            Lire l'article →
+                        </a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        🎯 Guide Mamos Trend Color
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span>📅 28 décembre 2024</span>
+                            <span>⏱️ 8 min</span>
+                            <div class="blog-tag">Tutoriel</div>
+                        </div>
+                        <h3 class="blog-title">
+                            <a href="#">Maîtriser Mamos Trend Color : Configuration & Stratégies</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            Apprenez à configurer et utiliser efficacement notre indicateur phare pour détecter les cycles Bitcoin. Configuration optimale, paramètres recommandés et stratégies de trading.
+                        </p>
+                        <a href="#" class="blog-read-more">
+                            Lire l'article →
+                        </a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        📊 Analyse Technique Avancée
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span>📅 24 décembre 2024</span>
+                            <span>⏱️ 15 min</span>
+                            <div class="blog-tag">Expert</div>
+                        </div>
+                        <h3 class="blog-title">
+                            <a href="#">Trading Multi-Actifs avec TAOM : Crypto, Forex & Actions</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            Découvrez comment utiliser The Avengers of Mamos sur différents marchés financiers. Stratégies adaptées, paramètres spécifiques et exemples concrets de trading.
+                        </p>
+                        <a href="#" class="blog-read-more">
+                            Lire l'article →
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="blog-cta">
+                <a href="blog.html" class="btn-blog">📚 Voir tous les articles</a>
             </div>
         </div>
     </section>
@@ -975,6 +1205,7 @@
             <div class="footer-links">
                 <a href="about.html">À propos</a>
                 <a href="docs.html">Documentation</a>
+                <a href="blog.html">Blog</a>
                 <a href="faq.html">FAQ</a>
                 <a href="contact.html">Contact</a>
                 <a href="#">Conditions d'utilisation</a>
