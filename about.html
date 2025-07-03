@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos de Mamos - Expert en Analyse Crypto | 10+ ans d'expérience</title>
+    <meta name="description" content="Découvrez Mamos, expert en analyse technique crypto depuis 10+ ans. Développeur d'indicateurs TradingView révolutionnaires et éducateur financier passionné.">
+    <meta name="keywords" content="mamos crypto, analyste technique, indicateurs tradingview, formation crypto, communauté trading">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a6fd8;
+            --primary-light: #7c8ef0;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --background: #0f0f23;
+            --surface: #1a1a3a;
+            --surface-light: #252550;
+            --border: #333366;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e6ff;
+            --text-muted: #a0a6cc;
+            --success: #00d4aa;
+            --warning: #ffc107;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: "👨‍💻";
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .cta-nav {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-nav:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--surface);
+            padding: 20px 0;
+            margin-top: 70px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 10px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--background) 0%, var(--surface) 50%, var(--background) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 60%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .hero-badge {
+            background: rgba(102, 126, 234, 0.2);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 30px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--success);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mamos-avatar {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mamos-avatar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .mamos-avatar span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 80px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .content-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .section-content strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        .section-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section-content li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .section-content li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 16px;
+        }
+
+        /* Indicators Showcase */
+        .indicators-showcase {
+            background: var(--surface-light);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 40px 0;
+        }
+
+        .indicators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .indicator-card {
+            background: var(--surface);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .indicator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .indicator-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 20px;
+            color: white;
+        }
+
+        .indicator-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .indicator-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .indicator-cta {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .indicator-cta:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Links Section */
+        .links-section {
+            background: var(--gradient);
+            color: white;
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .links-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 25s linear infinite;
+        }
+
+        .links-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .link-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .link-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .link-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .link-description {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .link-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .link-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Community CTA */
+        .community-cta {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            margin: 60px 0;
+            border: 1px solid var(--border);
+        }
+
+        .community-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .community-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .community-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .community-feature {
+            text-align: center;
+        }
+
+        .community-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .community-feature-title {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .community-feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .btn-large {
+            background: var(--gradient);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer Navigation */
+        .footer-nav {
+            background: var(--surface);
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .mamos-avatar {
+                width: 200px;
+                height: 200px;
+                font-size: 5rem;
+            }
+
+            .content-section {
+                padding: 30px;
+            }
+
+            .indicators-showcase {
+                padding: 30px;
+            }
+
+            .links-section {
+                padding: 30px;
+            }
+
+            .community-cta {
+                padding: 40px 20px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Mamos Crypto</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html" class="active">À propos</a></li>
+                <li><a href="docs.html">Documentation</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="index.html#pricing" class="cta-nav">🚀 Découvrir les indicateurs</a>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="index.html">← Retour à l'accueil</a>
+            <span>/</span>
+            <span>À propos</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">👨‍💻 Expert depuis 10+ ans</div>
+                    <h1 class="hero-title">À propos de Mamos</h1>
+                    <p class="hero-subtitle">
+                        Bienvenue dans l'univers de <strong>Mamos Crypto</strong>, une plateforme dédiée à l'analyse technique, à l'éducation financière et à la création d'outils intelligents pour les traders de crypto-monnaies.
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">10+</span>
+                            <span class="stat-label">Années d'expérience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Traders formés</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="mamos-avatar">
+                        <span>👨‍💻</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Mon Parcours -->
+            <section class="content-section animate-on-scroll">
+                <h2 class="section-title">📈 Mon parcours</h2>
+                <div class="section-content">
+                    <p>Je suis Mamos, passionné par les marchés depuis plus de 10 ans, développeur fullstack et analyste technique. Mon objectif est simple : <strong>démocratiser l'analyse crypto en la rendant claire, rigoureuse et accessible</strong>.</p>
+                    <p>À travers mes vidéos YouTube, mes indicateurs personnalisés sur TradingView, je guide ma communauté pour naviguer avec discipline et stratégie dans un marché aussi passionnant que volatile.</p>
+                </div>
+            </section>
+
+            <!-- Les Indicateurs Mamos -->
+            <section class="indicators-showcase animate-on-scroll">
+                <h2 class="section-title">📊 Les indicateurs Mamos</h2>
+                <div class="section-content">
+                    <p>Je conçois des indicateurs propriétaires comme le <strong>Mamos Trend Color</strong>, <strong>TAOM</strong>, ou encore les fameuses <strong>Magic Box</strong>. Ils sont pensés pour <strong>offrir un avantage technique sans surcharge visuelle</strong>. Simples, puissants, et précis.</p>
+                </div>
+                
+                <div class="indicators-grid">
+                    <div class="indicator-card">
+                        <div class="indicator-icon">🎨</div>
+                        <h3 class="indicator-title">Mamos Trend Color</h3>
+                        <p class="indicator-description">Indicateur de cycle Bitcoin ultra-précis. 95% de réussite sur les phases d'accumulation et signaux de vente.</p>
+                        <a href="mamos-trend-color-detail.html" class="indicator-cta">Découvrir →</a>
+                    </div>
+                    
+                    <div class="indicator-card">
+                        <div class="indicator-icon">⚡</div>
+                        <h3 class="indicator-title">The Avengers of Mamos</h3>
+                        <p class="indicator-description">5 outils en 1 : imbalances, Magic BOX, moyennes mobiles. Pour crypto, forex et actions.</p>
+                        <a href="taom-detail.html" class="indicator-cta">Découvrir →</a>
+                    </div>
+                    
+                    <div class="indicator-card">
+                        <div class="indicator-icon">📦</div>
+                        <h3 class="indicator-title">Magic Box</h3>
+                        <p class="indicator-description">Zones de support/résistance intelligentes. Multi-timeframe pour une vision complète du marché.</p>
+                        <a href="contact.html" class="indicator-cta">Nous contacter →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ma Mission -->
+            <section class="content-section animate-on-scroll">
+                <h2 class="section-title">🎯 Ma mission</h2>
+                <div class="section-content">
+                    <ul>
+                        <li>Former une communauté de traders disciplinés, lucides, et bien équipés</li>
+                        <li>Partager des outils et du contenu transparent, loin du FOMO et des promesses creuses</li>
+                        <li>Éduquer les débutants sur les risques, les cycles, et la vraie dynamique des prix</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Où me retrouver -->
+            <section class="links-section animate-on-scroll">
+                <div class="links-content">
+                    <h2 class="section-title" style="color: white; justify-content: center;">📍 Où me retrouver</h2>
+                    
+                    <div class="links-grid">
+                        <div class="link-card">
+                            <div class="link-icon">📺</div>
+                            <h3 class="link-title">Ma chaîne YouTube</h3>
+                            <p class="link-description">Analyses techniques, éducation crypto et stratégies de trading</p>
+                            <a href="https://www.youtube.com/@mamoscrypto" target="_blank" class="link-btn">Voir les vidéos</a>
+                        </div>
+                        
+                        <div class="link-card">
+                            <div class="link-icon">🌐</div>
+                            <h3 class="link-title">Mon site officiel</h3>
+                            <p class="link-description">Toutes mes ressources, analyses et outils en un seul endroit</p>
+                            <a href="https://mamoscrypto.fr" target="_blank" class="link-btn">Visiter le site</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rejoins la communauté -->
+            <section class="community-cta animate-on-scroll">
+                <h2 class="community-title">💬 Rejoins la communauté</h2>
+                <p class="community-subtitle">
+                    Chaque jour, des membres rejoignent l'univers Mamos pour apprendre, s'améliorer, et rester connectés à la réalité du marché. Tu es le/la bienvenu(e) !
+                </p>
+                
+                <div class="community-features">
+                    <div class="community-feature">
+                        <div class="community-feature-icon">🎓</div>
+                        <h4 class="community-feature-title">Formation Continue</h4>
+                        <p class="community-feature-desc">Webinaires, tutoriels et analyse de marché</p>
+                    </div>
+                    
+                    <div class="community-feature">
+                        <div class="community-feature-icon">💬</div>
+                        <h4 class="community-feature-title">Entraide</h4>
+                        <p class="community-feature-desc">Support communautaire et partage d'expériences</p>
+                    </div>
+                    
+                    <div class="community-feature">
+                        <div class="community-feature-icon">📊</div>
+                        <h4 class="community-feature-title">Analyses Live</h4>
+                        <p class="community-feature-desc">Décryptage des mouvements en temps réel</p>
+                    </div>
+                    
+                    <div class="community-feature">
+                        <div class="community-feature-icon">🛠️</div>
+                        <h4 class="community-feature-title">Outils Exclusifs</h4>
+                        <p class="community-feature-desc">Accès privilégié aux nouveaux indicateurs</p>
+                    </div>
+                </div>
+                
+                <a href="contact.html" class="btn-large">🚀 Rejoindre la communauté</a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="footer-nav">
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Accueil</a>
+                <a href="about.html">À propos</a>
+                <a href="docs.html">Documentation</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+                &copy; 2025 Mamos Crypto. Tous droits réservés.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            },
+            { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        );
+
+        document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(15, 15, 35, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
+            } else {
+                nav.style.background = 'rgba(15, 15, 35, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Avatar hover effect
+        const avatar = document.querySelector('.mamos-avatar');
+        avatar.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05) rotate(5deg)';
+        });
+
+        avatar.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) rotate(0deg)';
+        });
+    </script>
+</body>
+</html>
