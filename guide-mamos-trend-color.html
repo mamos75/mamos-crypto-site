@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Maîtriser Mamos Trend Color : Configuration & Stratégies | Guide Complet 2025</title>
+    <meta name="description" content="Guide complet pour configurer et utiliser l'indicateur Mamos Trend Color. Configuration optimale, stratégies de trading et conseils d'experts pour maximiser vos profits.">
+    <meta name="keywords" content="mamos trend color, configuration tradingview, indicateur bitcoin, stratégie trading, guide tutoriel">
+    <meta name="author" content="Équipe Mamos Crypto">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.mamoscrypto.fr/blog/guide-mamos-trend-color">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Guide Complet Mamos Trend Color : Configuration & Stratégies">
+    <meta property="og:description" content="Apprenez à configurer et utiliser efficacement notre indicateur phare pour détecter les cycles Bitcoin avec précision.">
+    <meta property="og:image" content="https://www.mamoscrypto.fr/images/blog/guide-mamos-trend-color-og.jpg">
+    <meta property="og:url" content="https://www.mamoscrypto.fr/blog/guide-mamos-trend-color">
+    <meta property="og:site_name" content="Mamos Crypto">
+    <meta property="article:author" content="Mamos Crypto">
+    <meta property="article:published_time" content="2024-12-28T10:00:00+01:00">
+    <meta property="article:modified_time" content="2024-12-28T10:00:00+01:00">
+    <meta property="article:section" content="Tutoriel">
+    <meta property="article:tag" content="Mamos Trend Color">
+    <meta property="article:tag" content="Configuration">
+    <meta property="article:tag" content="TradingView">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Maîtriser Mamos Trend Color : Configuration & Stratégies",
+      "description": "Guide complet pour configurer et utiliser efficacement l'indicateur Mamos Trend Color pour détecter les cycles Bitcoin.",
+      "image": [
+        "https://www.mamoscrypto.fr/images/blog/guide-mamos-trend-color.jpg"
+      ],
+      "datePublished": "2024-12-28T10:00:00+01:00",
+      "dateModified": "2024-12-28T10:00:00+01:00",
+      "author": {
+        "@type": "Organization",
+        "name": "Mamos Crypto",
+        "url": "https://www.mamoscrypto.fr"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Mamos Crypto",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.mamoscrypto.fr/images/logo-mamos.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.mamoscrypto.fr/blog/guide-mamos-trend-color"
+      }
+    }
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* === RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a6fd8;
+            --background: #0f0f23;
+            --surface: #1a1a3a;
+            --surface-light: #252550;
+            --border: #333366;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e6ff;
+            --text-muted: #a0a6cc;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --green-phase: #27ae60;
+            --red-phase: #e74c3c;
+            --orange-phase: #f39c12;
+            
+            --font-primary: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        /* === HEADER === */
+        .header {
+            background: #121212;
+            border-bottom: 1px solid var(--border);
+            padding: var(--space-lg) 0;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), #764ba2);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: var(--background);
+        }
+
+        .nav {
+            display: flex;
+            gap: var(--space-xl);
+        }
+
+        .nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: #764ba2;
+        }
+
+        /* === BREADCRUMB === */
+        .breadcrumb {
+            background: var(--surface);
+            padding: var(--space-md) 0;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 var(--space-sm);
+        }
+
+        /* === ARTICLE === */
+        .article {
+            padding: var(--space-2xl) 0;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .article-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: var(--space-lg);
+            background: linear-gradient(45deg, var(--text-primary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .article-excerpt {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary), #764ba2);
+            border-radius: var(--radius-lg);
+            margin: var(--space-2xl) 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="config-pattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23config-pattern)"/></svg>');
+        }
+
+        /* === CONTENT === */
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .article-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: var(--space-2xl) 0 var(--space-lg);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: var(--space-sm);
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: var(--space-xl) 0 var(--space-md);
+        }
+
+        .article-content h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin: var(--space-lg) 0 var(--space-sm);
+        }
+
+        .article-content p {
+            margin-bottom: var(--space-lg);
+            color: var(--text-secondary);
+        }
+
+        .article-content strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .article-content a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .article-content a:hover {
+            border-bottom-color: var(--primary);
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* === SPECIAL SECTIONS === */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(102, 126, 234, 0.05));
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-left: 4px solid var(--primary);
+            padding: var(--space-xl);
+            border-radius: var(--radius-md);
+            margin: var(--space-xl) 0;
+        }
+
+        .warning-box {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            border-left: 4px solid var(--danger);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .info-box {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            border-left: 4px solid #3498db;
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .success-box {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-left: 4px solid var(--success);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin: var(--space-lg) 0;
+        }
+
+        /* === STEP GRID === */
+        .steps-grid {
+            display: grid;
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+
+        .step-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+        }
+
+        .step-title {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+        }
+
+        /* === COLOR TABLE === */
+        .color-table {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin: var(--space-xl) 0;
+        }
+
+        .color-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .color-table th {
+            background: var(--surface-light);
+            color: var(--primary);
+            padding: var(--space-lg);
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .color-table td {
+            padding: var(--space-lg);
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .color-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: var(--space-sm);
+            vertical-align: middle;
+        }
+
+        .color-green { background: var(--green-phase); }
+        .color-orange { background: var(--orange-phase); }
+        .color-red { background: var(--red-phase); }
+
+        /* === STRATEGY CARDS === */
+        .strategy-grid {
+            display: grid;
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+
+        .strategy-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            transition: all 0.3s ease;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .strategy-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        /* === TABLE OF CONTENTS === */
+        .toc {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+        }
+
+        .toc h3 {
+            color: var(--primary);
+            margin-bottom: var(--space-lg);
+            font-size: 1.3rem;
+        }
+
+        .toc ol {
+            list-style: none;
+            counter-reset: toc-counter;
+        }
+
+        .toc ol li {
+            counter-increment: toc-counter;
+            margin-bottom: var(--space-sm);
+            position: relative;
+            padding-left: var(--space-xl);
+        }
+
+        .toc ol li::before {
+            content: counter(toc-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--primary);
+            color: var(--background);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            color: var(--primary);
+        }
+
+        /* === CTA SECTIONS === */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            text-align: center;
+            margin: var(--space-2xl) 0;
+        }
+
+        .cta-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+        }
+
+        .btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            margin: var(--space-sm);
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--space-md);
+            }
+
+            .header .container {
+                flex-direction: column;
+                gap: var(--space-lg);
+            }
+
+            .nav {
+                gap: var(--space-md);
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .color-table {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">M</div>
+                <span style="font-weight: 700; font-size: 1.2rem;">Mamos Crypto</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#indicateurs">Indicateurs</a>
+                <a href="index.html#blog">Blog</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Accueil</a>
+            <span>></span>
+            <a href="index.html#blog">Blog</a>
+            <span>></span>
+            <span>Guide Mamos Trend Color</span>
+        </div>
+    </nav>
+
+    <!-- ARTICLE -->
+    <article class="article">
+        <div class="container">
+            <!-- HEADER -->
+            <header class="article-header">
+                <div class="article-meta">
+                    <span>📅 28 décembre 2024</span>
+                    <span>⏱️ 8 min de lecture</span>
+                    <span>👨‍💻 Équipe Mamos</span>
+                    <span>🏷️ Tutoriel</span>
+                </div>
+                
+                <h1 class="article-title">Maîtriser Mamos Trend Color : Configuration & Stratégies</h1>
+                
+                <p class="article-excerpt">
+                    Apprenez à configurer et utiliser efficacement notre indicateur phare pour détecter les cycles Bitcoin. 
+                    Configuration optimale, paramètres recommandés et stratégies de trading professionnelles.
+                </p>
+            </header>
+
+            <!-- HERO IMAGE -->
+            <div class="article-image">
+                🎨 Configuration Mamos Trend Color
+            </div>
+
+            <!-- TABLE OF CONTENTS -->
+            <div class="toc">
+                <h3>📋 Sommaire du tutoriel</h3>
+                <ol>
+                    <li><a href="#objectif">Objectif de ce guide</a></li>
+                    <li><a href="#configuration">Configuration de base de l'indicateur</a></li>
+                    <li><a href="#timeframe">Timeframe recommandé</a></li>
+                    <li><a href="#interpretation">Interprétation des couleurs</a></li>
+                    <li><a href="#strategies">Stratégies de trading</a></li>
+                    <li><a href="#combinaisons">Combinaisons recommandées</a></li>
+                    <li><a href="#exemples">Exemples d'usage concrets</a></li>
+                    <li><a href="#conseils">Conseils & erreurs à éviter</a></li>
+                </ol>
+            </div>
+
+            <!-- CONTENT -->
+            <div class="article-content">
+                <section id="objectif">
+                    <h2>🎯 Objectif de ce guide</h2>
+                    
+                    <p>Apprenez à <strong>configurer</strong>, <strong>utiliser efficacement</strong> et <strong>interpréter</strong> l'indicateur <strong>Mamos Trend Color</strong>, conçu pour identifier les <strong>cycles majeurs du Bitcoin</strong>, anticiper les retournements de tendance et renforcer votre stratégie d'analyse technique long terme.</p>
+
+                    <div class="highlight-box">
+                        <p><strong>💡 Points clés :</strong> Ce guide vous permettra de maîtriser complètement l'indicateur en moins de 30 minutes et d'éviter les erreurs de configuration les plus courantes qui peuvent fausser vos analyses.</p>
+                    </div>
+                </section>
+
+                <section id="configuration">
+                    <h2>🔧 Configuration de base de l'indicateur</h2>
+                    
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <h3 class="step-title">✅ Étape 1 : Ajouter l'indicateur à vos favoris TradingView</h3>
+                            <ul>
+                                <li>Cliquez sur le lien privé ou public fourni par Mamos</li>
+                                <li>Une fois sur la page de l'indicateur, <strong>cliquez sur « Ajouter aux favoris »</strong></li>
+                                <li>Ouvrez un graphique TradingView, puis <strong>insérez l'indicateur depuis vos favoris</strong></li>
+                            </ul>
+                        </div>
+
+                        <div class="step-card">
+                            <h3 class="step-title">✅ Étape 2 : Préparer le graphique</h3>
+                            <p>Avant d'activer <strong>Mamos Trend Color</strong>, il est <strong>crucial de nettoyer votre graphique</strong> :</p>
+                            <ul>
+                                <li><strong>Désactivez tous les autres indicateurs actifs</strong> : RSI, MACD, etc.</li>
+                                <li><strong>Assurez-vous que le graphique est en mode "Bougie" standard</strong></li>
+                            </ul>
+                            <div class="warning-box">
+                                <p><strong>⚠️ Important :</strong> Le mode "Bougie creuse" ou "Heikin Ashi" fausse l'affichage des couleurs de l'indicateur.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <h3 class="step-title">✅ Étape 3 : Corriger l'affichage des bougies</h3>
+                            <p>Si l'indicateur n'affiche pas correctement les couleurs ou que les bougies semblent déformées, suivez ce protocole :</p>
+                            <ol>
+                                <li><strong>Double-cliquez sur une bougie</strong> pour ouvrir les « Paramètres du graphique »</li>
+                                <li>Dans l'onglet <strong>"Style"</strong> :
+                                    <ul>
+                                        <li><strong>Désactivez les bordures</strong> des bougies</li>
+                                        <li><strong>Choisissez une couleur neutre pour les mèches</strong></li>
+                                        <li>Laissez uniquement le <strong>corps coloré</strong> de la bougie visible</li>
+                                    </ul>
+                                </li>
+                                <li>Validez</li>
+                            </ol>
+                            <div class="success-box">
+                                <p><strong>🎯 Résultat :</strong> les couleurs du <strong>Mamos Trend Color</strong> apparaîtront de manière claire, sans interférence graphique.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="timeframe">
+                    <h2>📅 Timeframe recommandé</h2>
+                    
+                    <p>L'indicateur est <strong>optimisé pour les cycles macro</strong>.</p>
+
+                    <div class="highlight-box">
+                        <p><strong>🕒 Timeframe recommandé : Weekly (1W)</strong></p>
+                    </div>
+
+                    <h3>Pourquoi le Weekly ?</h3>
+                    <ul>
+                        <li>Il permet d'identifier les <strong>cycles haussiers et baissiers majeurs</strong></li>
+                        <li>Réduit les faux signaux liés au bruit du marché</li>
+                        <li>Donne un <strong>contexte stratégique</strong> pour swing trading ou investissement long terme</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <p><strong>⚠️ Attention :</strong> Si vous utilisez l'indicateur sur un graphique <strong>Daily ou inférieur</strong>, il risque de ne <strong>pas s'afficher correctement</strong>.</p>
+                    </div>
+
+                    <h3>Astuce de synchronisation :</h3>
+                    <div class="info-box">
+                        <p><strong>Synchronisez la timeframe dans le panneau de l'indicateur ET dans le graphique</strong></p>
+                        <p>Exemple :</p>
+                        <ul>
+                            <li>✅ Graphique TradingView en Weekly</li>
+                            <li>✅ Timeframe interne de l'indicateur en Weekly</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="interpretation">
+                    <h2>🎨 Interprétation des couleurs</h2>
+                    
+                    <p>Le cœur de l'indicateur repose sur un <strong>changement visuel de couleurs</strong> des bougies.</p>
+
+                    <div class="color-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Couleur</th>
+                                    <th>Signification</th>
+                                    <th>Signal d'action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="color-indicator color-green"></span>Vert vif</td>
+                                    <td>Tendance haussière</td>
+                                    <td>Momentum positif confirmé</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="color-indicator color-orange"></span>Orange/Jaune</td>
+                                    <td>Transition</td>
+                                    <td>Zone d'observation – possible retournement</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="color-indicator color-red"></span>Rouge vif</td>
+                                    <td>Tendance baissière</td>
+                                    <td>Momentum négatif confirmé</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>Les changements de couleur sont basés sur des <strong>algorithmes de cycles + volatilité + momentum</strong>, calibrés spécifiquement pour <strong>Bitcoin</strong>.</p>
+                </section>
+
+                <section id="strategies">
+                    <h2>📈 Stratégies de trading avec Mamos Trend Color</h2>
+                    
+                    <div class="strategy-grid">
+                        <div class="strategy-card">
+                            <h3 class="strategy-title">🧭 Stratégie #1 : Confirmation de cycle haussier</h3>
+                            <ul>
+                                <li>Attendez un <strong>passage durable au vert</strong> (au moins 2 à 3 bougies hebdomadaires vertes)</li>
+                                <li>Entrez en <strong>position longue</strong> ou <strong>renforcez votre investissement</strong></li>
+                            </ul>
+                        </div>
+
+                        <div class="strategy-card">
+                            <h3 class="strategy-title">🧨 Stratégie #2 : Prévention d'un retournement</h3>
+                            <ul>
+                                <li>Surveillez l'apparition de la <strong>couleur orange/jaune</strong></li>
+                                <li>C'est une <strong>zone de transition</strong> : le marché peut soit repartir soit amorcer une chute</li>
+                                <li>Couplé avec d'autres indicateurs (RSI, MM, divergence), cela devient un <strong>puissant signal d'alerte</strong></li>
+                            </ul>
+                        </div>
+
+                        <div class="strategy-card">
+                            <h3 class="strategy-title">🛑 Stratégie #3 : Sortie de position en tendance baissière</h3>
+                            <ul>
+                                <li>Si la bougie passe au <strong>rouge vif</strong>, considérez une <strong>prise de profit ou une sortie</strong></li>
+                                <li>Le signal est souvent <strong>précurseur de plusieurs semaines de baisse</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="combinaisons">
+                    <h2>🛠️ Combinaisons recommandées</h2>
+                    
+                    <p>L'indicateur Mamos Trend Color peut être encore plus puissant s'il est combiné à :</p>
+
+                    <div class="color-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Indicateur complémentaire</th>
+                                    <th>Utilité</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong><a href="taom-detail.html">The Avengers of Mamos (TAOM)</a></strong></td>
+                                    <td>Analyse de structure et niveau de support/résistance</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Magic Box</strong></td>
+                                    <td>Détection de zones critiques (S1/S2/R1/R2)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>RSI classique</strong></td>
+                                    <td>Confirmation de momentum et divergences</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Moyennes mobiles EMA</strong></td>
+                                    <td>Validation des tendances principales</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="exemples">
+                    <h2>🧪 Exemples d'usage (cas concrets)</h2>
+                    
+                    <div class="highlight-box">
+                        <h3>📊 Cycle Bullrun 2020 - 2021 :</h3>
+                        <p>Dès octobre 2020, le <strong>Mamos Trend Color est passé au vert</strong> sur le weekly. Le signal a duré <strong>plus de 10 mois</strong>, validant un mouvement haussier massif de +1,643%.</p>
+                    </div>
+
+                    <div class="warning-box">
+                        <h3>📉 Bear Market 2022 :</h3>
+                        <p>À partir de décembre 2021, passage en <strong>orange puis rouge</strong>. Ceux qui ont suivi le signal ont pu <strong>éviter la chute de -76%</strong> qui a suivi.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>🔄 Cycle actuel 2024-2025 :</h3>
+                        <p>Avec le halving Bitcoin 2024 et l'adoption institutionnelle massive, l'indicateur donne des signaux cruciaux pour naviguer cette nouvelle phase du marché.</p>
+                    </div>
+                </section>
+
+                <section id="conseils">
+                    <h2>📌 Conseils & erreurs à éviter</h2>
+                    
+                    <h3>❌ Erreurs courantes :</h3>
+                    <ul>
+                        <li><strong>Ne jamais l'utiliser en 4h ou 1h</strong> : il n'est <strong>pas conçu pour l'intraday</strong></li>
+                        <li><strong>Ne pas mélanger avec des couleurs de bougies standards</strong></li>
+                        <li>Ignorer les signaux orange (transition) qui sont pourtant cruciaux</li>
+                        <li>Trader uniquement sur la couleur sans confirmation d'autres indicateurs</li>
+                    </ul>
+
+                    <h3>✅ Bonnes pratiques :</h3>
+                    <ul>
+                        <li>Toujours <strong>vérifier que le mode "Bougies pleines" est activé</strong></li>
+                        <li>Faites une <strong>sauvegarde de votre template TradingView</strong> une fois configuré</li>
+                        <li>Utilisez-le en complément d'une analyse fondamentale</li>
+                        <li>Restez patient : les signaux sont conçus pour le long terme</li>
+                        <li>Documentez vos trades pour améliorer votre stratégie</li>
+                    </ul>
+
+                    <div class="success-box">
+                        <p><strong>🎯 Conseil Pro :</strong> Créez des alertes TradingView personnalisées pour être notifié automatiquement des changements de couleur importants.</p>
+                    </div>
+                </section>
+
+                <div class="cta-section">
+                    <h3 class="cta-title">🚀 Prêt à utiliser Mamos Trend Color ?</h3>
+                    <p>Maintenant que vous maîtrisez la configuration et les stratégies, il est temps de passer à l'action !</p>
+                    <a href="mamos-trend-color-detail.html" class="btn">🎯 Obtenir l'indicateur</a>
+                    <a href="index.html#indicateurs" class="btn">📊 Voir tous nos outils</a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- FOOTER -->
+    <footer style="background: #121212; border-top: 1px solid var(--border); padding: var(--space-xl) 0; text-align: center; margin-top: var(--space-2xl);">
+        <div class="container">
+            <p style="color: var(--primary); font-weight: 700; margin-bottom: var(--space-md);">Révolutionnez votre trading avec Mamos Crypto</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2025 Mamos Crypto. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>
