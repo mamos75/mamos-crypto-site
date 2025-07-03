@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactez Mamos - Support et Collaboration | Mamos Crypto</title>
+    <meta name="description" content="Contactez Mamos pour toute demande sérieuse : collaboration, support, accès aux indicateurs premium. Réponse sous 24-72h maximum.">
+    <meta name="keywords" content="contact mamos, support mamos crypto, collaboration, indicateurs premium, crypto.mamos@gmail.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a6fd8;
+            --primary-light: #7c8ef0;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --background: #0f0f23;
+            --surface: #1a1a3a;
+            --surface-light: #252550;
+            --border: #333366;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e6ff;
+            --text-muted: #a0a6cc;
+            --success: #00d4aa;
+            --warning: #ffc107;
+            --danger: #ff4757;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: "📧";
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .cta-nav {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-nav:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--surface);
+            padding: 20px 0;
+            margin-top: 70px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 10px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--background) 0%, var(--surface) 50%, var(--background) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 60%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            background: rgba(102, 126, 234, 0.2);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 30px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .response-time {
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 80px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .contact-form-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .contact-info-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        .section-content strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Form Styles */
+        .contact-form {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: var(--surface-light);
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: var(--gradient);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Email Section */
+        .email-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .email-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .email-address {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(102, 126, 234, 0.1);
+            padding: 20px 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .email-address:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Important Section */
+        .important-section {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            color: #856404;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .important-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .important-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .important-list li {
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+            font-weight: 600;
+        }
+
+        .important-list li::before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 20px;
+        }
+
+        .important-list li:nth-child(1)::before { content: "⛔️"; }
+        .important-list li:nth-child(2)::before { content: "💰"; }
+        .important-list li:nth-child(3)::before { content: "🛠"; }
+
+        /* Social Links Section */
+        .social-section {
+            background: var(--gradient);
+            color: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .social-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .social-link-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .social-link-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .social-link-desc {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        /* Final Message */
+        .final-message {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .final-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .final-content {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Quick FAQ */
+        .quick-faq {
+            background: var(--surface-light);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .faq-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .faq-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .faq-answer.open {
+            padding: 20px;
+            max-height: 200px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content {
+                padding: 0 15px;
+            }
+
+            .email-section, .important-section, .social-section, .final-message {
+                padding: 30px 20px;
+            }
+
+            .social-links {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Mamos Crypto</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="docs.html">Documentation</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <a href="index.html#pricing" class="cta-nav">🚀 Découvrir les indicateurs</a>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="index.html">← Retour à l'accueil</a>
+            <span>/</span>
+            <span>Contact</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">📧 Réponse garantie sous 72h</div>
+                <h1 class="hero-title">Contactez Mamos</h1>
+                <p class="hero-subtitle">
+                    Tu veux entrer en contact avec moi ? Que tu sois trader débutant, partenaire potentiel, développeur, ou curieux, je suis à l'écoute. Voici comment tu peux me joindre :
+                </p>
+                <div class="response-time">
+                    ⏱️ Réponse sous 24 à 72h maximum
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Contact Grid -->
+            <div class="contact-grid animate-on-scroll">
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h2 class="section-title">💬 Envoyez un message</h2>
+                    <div class="section-content">
+                        <p>Remplissez ce formulaire pour toute demande. Plus votre message est précis, plus ma réponse sera adaptée.</p>
+                    </div>
+                    
+                    <form class="contact-form" action="mailto:crypto.mamos@gmail.com" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Nom complet *</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Sujet *</label>
+                            <select id="subject" name="subject" class="form-select" required>
+                                <option value="">Choisissez un sujet</option>
+                                <option value="Collaboration">Collaboration / Partenariat</option>
+                                <option value="Support">Support technique</option>
+                                <option value="Indicateurs">Accès indicateurs premium</option>
+                                <option value="Formation">Question formation</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message *</label>
+                            <textarea id="message" name="message" class="form-textarea" required placeholder="Décrivez votre demande de manière précise et détaillée..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="form-submit">📧 Envoyer le message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info-section">
+                    <h2 class="section-title">ℹ️ Informations utiles</h2>
+                    <div class="section-content">
+                        <p><strong>Temps de réponse :</strong> 24 à 72h maximum</p>
+                        <p><strong>Langues :</strong> Français (natif), Anglais</p>
+                        <p><strong>Horaires :</strong> Réponse 7j/7 mais traitement en semaine</p>
+                        <p><strong>Spécialités :</strong></p>
+                        <ul style="list-style: none; padding-left: 20px; margin-top: 10px;">
+                            <li>📊 Analyse technique crypto</li>
+                            <li>🛠️ Développement d'indicateurs</li>
+                            <li>🎓 Formation & éducation</li>
+                            <li>🤝 Partenariats professionnels</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Section -->
+            <section class="email-section animate-on-scroll">
+                <h2 class="email-title">📬 Adresse email</h2>
+                <div class="section-content">
+                    <p>Pour toute demande sérieuse (collaboration, support, accès aux indicateurs premium, partenariat) :</p>
+                </div>
+                
+                <div class="email-address" onclick="copyEmail()">
+                    📧 crypto.mamos@gmail.com
+                </div>
+                
+                <div class="section-content">
+                    <p>Je lis chaque message avec attention. Si ta demande est pertinente, tu recevras une réponse dans un délai de 24 à 72h maximum.</p>
+                </div>
+            </section>
+
+            <!-- Important Section -->
+            <section class="important-section animate-on-scroll">
+                <h2 class="important-title">❗ Important</h2>
+                <ul class="important-list">
+                    <li><strong>Pas de spam</strong> — Les messages automatisés ou promotions non sollicitées seront ignorés.</li>
+                    <li><strong>Pas de conseil personnalisé</strong> — Je ne donne pas de recommandations financières individuelles.</li>
+                    <li><strong>Support VIP</strong> — Si tu es membre VIP, passe plutôt par l'espace dédié.</li>
+                </ul>
+            </section>
+
+            <!-- Social Networks -->
+            <section class="social-section animate-on-scroll">
+                <div class="social-content">
+                    <h2 class="social-title">🌐 Réseaux officiels</h2>
+                    <p style="text-align: center; margin-bottom: 30px; opacity: 0.9;">
+                        Tu peux aussi me retrouver ici :
+                    </p>
+                    
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/@mamoscrypto" target="_blank" class="social-link">
+                            <span class="social-link-icon">🎥</span>
+                            <div class="social-link-title">YouTube</div>
+                            <div class="social-link-desc">Analyses techniques & stratégies</div>
+                        </a>
+                        
+                        <a href="https://www.tradingview.com/u/Mamos75/" target="_blank" class="social-link">
+                            <span class="social-link-icon">📊</span>
+                            <div class="social-link-title">TradingView</div>
+                            <div class="social-link-desc">Mes indicateurs & scripts</div>
+                        </a>
+                        
+                        <a href="https://mamoscrypto.fr" target="_blank" class="social-link">
+                            <span class="social-link-icon">🌍</span>
+                            <div class="social-link-title">Site officiel</div>
+                            <div class="social-link-desc">Accès complet à mes outils</div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick FAQ -->
+            <section class="quick-faq animate-on-scroll">
+                <h2 class="faq-title">🤔 Questions fréquentes</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Comment accéder aux indicateurs premium ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Envoyez-moi un email détaillé expliquant votre profil de trader et vos besoins. Je vous donnerai accès selon votre expérience et motivation.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Proposez-vous des formations personnalisées ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Oui, pour les traders sérieux. Contactez-moi pour discuter de vos objectifs et voir si un accompagnement personnalisé est pertinent.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Développez-vous des indicateurs sur mesure ?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Dans certains cas, oui. Pour les projets sérieux avec un cahier des charges précis. Contactez-moi pour en discuter.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Final Message -->
+            <section class="final-message animate-on-scroll">
+                <h2 class="final-title">🧠 Un dernier mot</h2>
+                <div class="final-content">
+                    <p>Le trading est un chemin de rigueur. Si tu as une question pertinente ou une idée de collaboration sérieuse, n'hésite pas à me contacter. Ensemble, on élève le niveau.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Copy email function
+        function copyEmail() {
+            const email = 'crypto.mamos@gmail.com';
+            navigator.clipboard.writeText(email).then(() => {
+                const emailDiv = document.querySelector('.email-address');
+                const originalText = emailDiv.textContent;
+                emailDiv.textContent = '✅ Email copié !';
+                emailDiv.style.background = 'rgba(0, 212, 170, 0.2)';
+                emailDiv.style.borderColor = 'var(--success)';
+                emailDiv.style.color = 'var(--success)';
+                
+                setTimeout(() => {
+                    emailDiv.textContent = originalText;
+                    emailDiv.style.background = 'rgba(102, 126, 234, 0.1)';
+                    emailDiv.style.borderColor = 'rgba(102, 126, 234, 0.2)';
+                    emailDiv.style.color = 'var(--primary)';
+                }, 2000);
+            });
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isOpen = answer.classList.contains('open');
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+                document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+                
+                // Open current if not already open
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            },
+            { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        );
+
+        document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(15, 15, 35, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
+            } else {
+                nav.style.background = 'rgba(15, 15, 35, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Form enhancement
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Create mailto link
+            const mailtoLink = `mailto:crypto.mamos@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+        });
+    </script>
+</body>
+</html>
