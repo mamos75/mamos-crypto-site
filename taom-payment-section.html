@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Avengers of Mamos - Section Paiement</title>
+    <style>
+        .payment-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: white;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .payment-title {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .price-highlight {
+            font-size: 3em;
+            font-weight: bold;
+            color: #00ff88;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+        
+        .crypto-address {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            word-break: break-all;
+            backdrop-filter: blur(10px);
+        }
+        
+        .networks-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .network-badge {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9em;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .instruction-step {
+            background: rgba(255,255,255,0.05);
+            border-left: 4px solid #00ff88;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+            text-align: left;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+            color: #1a1a2e;
+            font-size: 1.3em;
+            font-weight: bold;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.4);
+        }
+        
+        .guarantee-text {
+            font-style: italic;
+            color: #00ff88;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        
+        @media (max-width: 768px) {
+            .payment-section {
+                padding: 20px;
+                margin: 20px 10px;
+            }
+            .price-highlight {
+                font-size: 2.2em;
+            }
+            .networks-list {
+                gap: 10px;
+            }
+            .network-badge {
+                font-size: 0.8em;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Section à ajouter avant le bouton "Obtenir TAOM Maintenant" existant -->
+<div class="payment-section">
+    <h2 class="payment-title">💳 Comment Se Procurer TAOM ?</h2>
+    
+    <div class="price-highlight">199 USDC</div>
+    
+    <p style="font-size: 1.2em; margin-bottom: 30px;">
+        Le prix promotionnel est actuellement à <strong>199 USDC</strong>, à envoyer à cette adresse ETHEREUM ERC20 :
+    </p>
+    
+    <div class="crypto-address">
+        <strong>0x49067a08c66b41a6a7e0d7d6d00988c5126de39a</strong>
+    </div>
+    
+    <p style="font-size: 1.1em; margin: 20px 0;">
+        Cette adresse est compatible avec :
+    </p>
+    
+    <div class="networks-list">
+        <span class="network-badge">OP</span>
+        <span class="network-badge">BSC</span>
+        <span class="network-badge">ARB</span>
+        <span class="network-badge">MATIC</span>
+        <span class="network-badge">AVAX</span>
+        <span class="network-badge">SONIC</span>
+    </div>
+    
+    <div class="instruction-step">
+        <strong>📤 Étape 1 :</strong> Envoyez 199 USDC à l'adresse ci-dessus depuis n'importe quel réseau compatible
+    </div>
+    
+    <div class="instruction-step">
+        <strong>📧 Étape 2 :</strong> Envoyez la preuve de transaction à cette adresse email: <strong>crypto.mamos@gmail.com</strong>
+    </div>
+    
+    <div class="instruction-step">
+        <strong>⚡ Étape 3 :</strong> Vous recevrez un lien qui installera automatiquement l'indicateur sur votre compte TradingView
+    </div>
+    
+    <a href="mailto:crypto.mamos@gmail.com?subject=Achat%20The%20Avengers%20of%20Mamos&body=Bonjour,%0D%0A%0D%0AJe%20souhaite%20acheter%20l%27indicateur%20The%20Avengers%20of%20Mamos%20pour%20199%20USDC.%0D%0A%0D%0AJe%20vais%20envoyer%20le%20paiement%20%C3%A0%20l%27adresse%20:%200x49067a08c66b41a6a7e0d7d6d00988c5126de39a%0D%0A%0D%0ACordialement" 
+       class="cta-button">
+        ⚔️ Commander TAOM Maintenant
+    </a>
+    
+    <div class="guarantee-text">
+        ✅ Satisfait ou remboursé intégralement
+    </div>
+</div>
+
+</body>
+</html>

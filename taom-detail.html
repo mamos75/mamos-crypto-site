@@ -641,6 +641,61 @@
             font-size: 16px;
         }
 
+        /* Payment Section */
+        .payment-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .payment-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #00ff88;
+        }
+
+        .crypto-address {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            word-break: break-all;
+            color: #00ff88;
+        }
+
+        .networks-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .network-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .instruction-step {
+            background: rgba(255,255,255,0.1);
+            border-left: 3px solid #00ff88;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
         .guarantee {
             background: rgba(0, 0, 0, 0.2);
             padding: 20px;
@@ -758,6 +813,23 @@
             .container {
                 padding: 0 15px;
             }
+
+            .networks-list {
+                gap: 8px;
+            }
+
+            .network-badge {
+                font-size: 0.75rem;
+                padding: 4px 10px;
+            }
+
+            .pricing {
+                padding: 40px 20px;
+            }
+
+            .payment-section {
+                padding: 20px;
+            }
         }
 
         /* Animations */
@@ -822,7 +894,7 @@
                 </div>
                 
                 <div class="hero-cta">
-                    <a href="#pricing" class="btn btn-primary">⚔️ Obtenir TAOM - 99€</a>
+                    <a href="#pricing" class="btn btn-primary">⚔️ Obtenir TAOM - 99 USDC</a>
                     <a href="#features" class="btn btn-secondary">🛠️ Découvrir les outils</a>
                 </div>
             </div>
@@ -1020,7 +1092,7 @@
                     <div class="comparison-check">❌</div>
                     
                     <div class="comparison-row">Prix (paiement unique)</div>
-                    <div class="comparison-check">99€</div>
+                    <div class="comparison-check">99 USDC</div>
                     <div class="comparison-check">50€+/mois</div>
                     
                     <div class="comparison-row">Support & formation</div>
@@ -1077,7 +1149,7 @@
                 <div class="pricing-content">
                     <div class="pricing-badge">🔥 PROMOTION LIMITÉE</div>
                     <h2 class="pricing-title">The Avengers of Mamos</h2>
-                    <div class="price-display">99€</div>
+                    <div class="price-display">99 USDC</div>
                     <div class="price-period">Paiement unique - 5 outils à vie</div>
                     
                     <ul class="pricing-features">
@@ -1091,8 +1163,47 @@
                         <li>Mises à jour gratuites à vie</li>
                     </ul>
                     
-                    <a href="mailto:crypto.mamos@gmail.com?subject=Achat%20The%20Avengers%20of%20Mamos" class="btn btn-large" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white;">
-                        ⚔️ Obtenir TAOM Maintenant
+                    <!-- Payment Section -->
+                    <div class="payment-section">
+                        <h3 class="payment-title">💳 Comment Se Procurer TAOM ?</h3>
+                        
+                        <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                            Le prix promotionnel est actuellement à <strong>99 USDC</strong>, à envoyer à cette adresse ETHEREUM ERC20 :
+                        </p>
+                        
+                        <div class="crypto-address">
+                            <strong>0x49067a08c66b41a6a7e0d7d6d00988c5126de39a</strong>
+                        </div>
+                        
+                        <p style="font-size: 1rem; margin: 15px 0;">
+                            Cette adresse est compatible avec :
+                        </p>
+                        
+                        <div class="networks-list">
+                            <span class="network-badge">OP</span>
+                            <span class="network-badge">BSC</span>
+                            <span class="network-badge">ARB</span>
+                            <span class="network-badge">MATIC</span>
+                            <span class="network-badge">AVAX</span>
+                            <span class="network-badge">SONIC</span>
+                        </div>
+                        
+                        <div class="instruction-step">
+                            <strong>📤 Étape 1 :</strong> Envoyez 99 USDC à l'adresse ci-dessus
+                        </div>
+                        
+                        <div class="instruction-step">
+                            <strong>📧 Étape 2 :</strong> Envoyez la preuve de transaction à : <strong>crypto.mamos@gmail.com</strong>
+                        </div>
+                        
+                        <div class="instruction-step">
+                            <strong>⚡ Étape 3 :</strong> Recevez le lien d'installation automatique TradingView
+                        </div>
+                    </div>
+                    
+                    <a href="mailto:crypto.mamos@gmail.com?subject=Achat%20The%20Avengers%20of%20Mamos&body=Bonjour,%0D%0A%0D%0AJe%20souhaite%20acheter%20l%27indicateur%20The%20Avengers%20of%20Mamos%20pour%2099%20USDC.%0D%0A%0D%0AJe%20vais%20envoyer%20le%20paiement%20%C3%A0%20l%27adresse%20:%200x49067a08c66b41a6a7e0d7d6d00988c5126de39a%0D%0A%0D%0ACordialement" 
+       class="btn btn-large" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; margin-top: 20px;">
+                        ⚔️ Commander TAOM Maintenant
                     </a>
                     
                     <div class="guarantee">
@@ -1153,7 +1264,7 @@
                 <p class="footer-cta-subtitle">
                     Obtenez The Avengers of Mamos et transformez votre trading avec 5 outils professionnels
                 </p>
-                <a href="#pricing" class="btn btn-primary btn-large">⚔️ Obtenir TAOM - 99€</a>
+                <a href="#pricing" class="btn btn-primary btn-large">⚔️ Obtenir TAOM - 99 USDC</a>
             </section>
         </div>
     </main>
