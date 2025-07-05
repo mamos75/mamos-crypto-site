@@ -69,28 +69,42 @@
             border-bottom: 1px solid rgba(255,255,255,0.2);
             z-index: 1000;
             transition: all 0.3s ease;
+            height: 80px; /* Hauteur fixe pour la navbar */
         }
         
         .nav-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: var(--space-sm);
+            padding: 10px var(--space-sm); /* Padding vertical ajusté */
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 100%;
         }
         
-        .logo {
-            font-size: var(--text-xl);
-            font-weight: 800;
-            color: var(--primary);
-            text-decoration: none;
+        /* ===== AMÉLIORATIONS DU LOGO ===== */
+
+
+
+
+
+        .logo-text {
+            margin-left: 12px;
+            font-weight: 700;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .nav-links {
             display: flex;
             gap: var(--space-md);
             list-style: none;
+            align-items: center;
+            height: 100%;
+            margin: 0;
         }
         
         .nav-links a {
@@ -100,6 +114,9 @@
             font-size: var(--text-base);
             transition: color 0.3s ease;
             position: relative;
+            display: flex;
+            align-items: center;
+            height: 40px;
         }
         
         .nav-links a:hover {
@@ -109,7 +126,7 @@
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
@@ -127,6 +144,8 @@
             flex-direction: column;
             cursor: pointer;
             padding: var(--space-xs);
+            justify-content: center;
+            height: 40px;
         }
 
         .burger span {
@@ -214,6 +233,111 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        /* Logo dans le hero amélioré */
+        .hero-logo {
+            margin-bottom: var(--space-lg);
+            position: relative;
+            display: inline-block;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-logo-container {
+            position: relative;
+            display: inline-block;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 2px 4px rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-logo-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent), var(--primary), var(--secondary), var(--accent));
+            border-radius: 20px;
+            opacity: 0.6;
+            z-index: -1;
+            animation: gradient-rotate 4s linear infinite;
+        }
+
+        @keyframes gradient-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    .hero-logo img {
+        max-width: clamp(150px, 30vw, 250px);
+        height: auto;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+        position: relative;
+        z-index: 1;
+    }
+
+        .hero-logo-shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transform: skewX(-20deg);
+            animation: logo-shine 3s infinite;
+        }
+
+        @keyframes logo-shine {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+
+        .logo-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: particle-float 3s infinite;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-60px) scale(0);
+                opacity: 0;
+            }
         }
 
         .trustpilot-hero {
@@ -832,6 +956,40 @@
             padding: var(--space-lg) 0;
             text-align: center;
         }
+
+        /* Logo dans le footer amélioré */
+        .footer-logo {
+            margin-bottom: var(--space-md);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-logo-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-logo-wrapper:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+            opacity: 0.8;
+            filter: brightness(1.2) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            transition: all 0.3s ease;
+        }
+
+        .footer-logo-wrapper:hover img {
+            opacity: 1;
+            filter: brightness(1.3) drop-shadow(0 4px 8px rgba(102, 126, 234, 0.4));
+        }
         
         .footer-links {
             display: flex;
@@ -862,6 +1020,12 @@
                 --space-lg: 1.5rem;
             }
             
+            .nav {
+                height: 70px; /* Hauteur légèrement réduite sur mobile */
+            }
+            
+            
+            
             .btn-primary, .btn-secondary {
                 min-width: 100%;
             }
@@ -885,14 +1049,15 @@
                 flex-direction: column;
                 gap: var(--space-xs);
             }
-        }
+            
+
 
         /* Mobiles */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
                 position: absolute;
-                top: 100%;
+                top: 80px; /* Aligné avec la hauteur de la navbar */
                 left: 0;
                 right: 0;
                 background: rgba(255,255,255,0.98);
@@ -900,6 +1065,8 @@
                 padding: var(--space-md);
                 box-shadow: 0 5px 20px rgba(0,0,0,0.1);
                 backdrop-filter: blur(20px);
+                height: auto;
+                align-items: flex-start;
             }
             
             .nav-links.active {
@@ -912,7 +1079,7 @@
             
             .hero-content {
                 text-align: center;
-                padding-top: 80px;
+                padding-top: 100px; /* Ajusté pour la nouvelle hauteur de navbar */
             }
             
             .features-grid, .blog-grid, .testimonials-grid {
@@ -922,14 +1089,35 @@
             .pricing-card.featured {
                 transform: none;
             }
+
+            .hero-logo-container::before {
+                animation: none;
+                background: linear-gradient(135deg, var(--primary), var(--secondary));
+            }
+        }
+        
+        /* Ajustement spécifique pour petits mobiles */
+        @media (max-width: 480px) {
+            .nav-links {
+                top: 70px; /* Ajusté pour la hauteur réduite sur mobile */
+            }
+            
+            .hero-content {
+                padding-top: 85px; /* Ajusté pour mobile */
+            }
         }
 
         /* Tablettes */
         @media (min-width: 769px) and (max-width: 1024px) {
+            .nav {
+                height: 75px;
+            }
+            
             .hero-content {
                 grid-template-columns: 1fr 1fr;
                 gap: var(--space-xl);
                 text-align: left;
+                padding-top: 100px;
             }
             
             .features-grid, .blog-grid {
@@ -951,6 +1139,7 @@
                 grid-template-columns: 1fr 1fr;
                 gap: var(--space-xl);
                 text-align: left;
+                padding-top: 100px;
             }
             
             .hero-text {
@@ -981,6 +1170,13 @@
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
+            
+            .hero-logo,
+            .hero-logo-shine,
+            .hero-logo-container::before,
+            .particle {
+                animation: none !important;
+            }
         }
 
         /* Mode sombre */
@@ -1005,10 +1201,12 @@
     </style>
 </head>
 <body>
-    <!-- Navigation responsive -->
+    <!-- Navigation responsive avec logo amélioré -->
     <nav class="nav">
         <div class="nav-content">
-            <a href="#" class="logo">Mamos Crypto</a>
+            
+                <span class="logo-text">Mamos - Indicateurs Premium pour TradingView</span>
+            </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#indicateurs">Indicateurs</a></li>
@@ -1025,11 +1223,23 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section avec logo amélioré -->
     <section class="hero" id="accueil">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
+                    <div class="hero-logo">
+                        <div class="hero-logo-container">
+                            <div class="hero-logo-shine"></div>
+                            <img src="logo-mamos.png" alt="Mamos">
+                            <div class="logo-particles">
+                                <span class="particle" style="left: 20%; animation-delay: 0s;"></span>
+                                <span class="particle" style="left: 40%; animation-delay: 0.5s;"></span>
+                                <span class="particle" style="left: 60%; animation-delay: 1s;"></span>
+                                <span class="particle" style="left: 80%; animation-delay: 1.5s;"></span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="hero-badge">🚀 500+ utilisateurs satisfaits</div>
                     <h1 class="hero-title">Indicateurs TradingView <span style="color: #00d4aa;">Révolutionnaires</span></h1>
                     <p class="hero-subtitle">Détectez automatiquement les cycles Bitcoin et maximisez vos profits avec une précision de 95%</p>
@@ -1058,7 +1268,7 @@
                         </div>
                         <div class="hero-feature">
                             <span>🛡️</span>
-                            <span>Garantie 30 jours</span>
+                            <span>Garantie </span>
                         </div>
                     </div>
                 </div>
@@ -1391,7 +1601,7 @@
                 <p class="final-cta-subtitle">Rejoignez les centaines de traders qui utilisent déjà nos indicateurs pour maximiser leurs profits</p>
                 
                 <div class="guarantee-badge">
-                    🛡️ Garantie 30 jours - Satisfait ou remboursé
+                    🛡️ Garantie - Satisfait 
                 </div>
                 
                 <div class="cta-buttons">
@@ -1402,9 +1612,14 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer avec logo amélioré -->
     <footer class="footer">
         <div class="container">
+            <div class="footer-logo">
+                <div class="footer-logo-wrapper">
+                    <img src="logo-mamos.png" alt="Mamos">
+                </div>
+            </div>
             <div class="footer-links">
                 <a href="about.html">À propos</a>
                 <a href="docs.html">Documentation</a>
