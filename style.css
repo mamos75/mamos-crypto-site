@@ -865,12 +865,49 @@ img, video, iframe {
 /*-----------------------------------
   Stats Section
 -----------------------------------*/
-.stats-grid {
+/* 1. Conteneur général */
+.stats-section {
   display: grid;
-  gap: var(--space-lg);
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  align-items: center;
   text-align: center;
+  gap: 2rem;                        /* espace entre les items */
+  padding: 4rem 2rem;               /* haut/bas et latéral */
+  background: linear-gradient(
+    135deg,
+    hsl(230, 80%, 70%) 0%,
+    hsl(270, 60%, 65%) 100%
+  );
+  color: #fff;                      /* texte blanc */
 }
+
+/* 2. Valeur principale */
+.stat-value {
+  font-size: 3.5rem;                /* taille XXL */
+  font-weight: 800;                 /* ultra-bold */
+  line-height: 1;                   /* pour bien serrer */
+  margin: 0;                        /* reset */
+}
+
+/* 3. Label descriptif */
+.stat-label {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 0.5rem;
+  opacity: 0.8;                     /* légère transparence */
+}
+
+/* 4. Responsive (optionnel) */
+@media (max-width: 600px) {
+  .stats-section {
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+  }
+  .stat-value {
+    font-size: 2.5rem;
+  }
+}
+
 
 /*-----------------------------------
   Final CTA Section
