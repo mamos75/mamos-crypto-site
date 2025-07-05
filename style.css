@@ -1230,8 +1230,8 @@ button {
   
   /* Graphique responsive mobile */
   .indicator-preview {
-    max-width: 95%;
-    padding: var(--space-4);
+    max-width: 99%;
+    padding: var(--space-1);
   }
   
   .preview-image img {
