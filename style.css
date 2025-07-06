@@ -1068,86 +1068,220 @@ button {
 }
 
 /* ====================================
-   💰 PRICING SECTION
+   🚀 PRICING CARDS - DESIGN FUTURISTE
    ==================================== */
+
+/* Pricing Section Background */
 .section.pricing {
-  background: var(--bg-gradient-section);
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  position: relative;
+  overflow: hidden;
 }
 
+.section.pricing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 212, 170, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 170, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* Section Header pour le pricing futuriste */
+.section.pricing .section-header {
+  margin-bottom: var(--space-xl);
+}
+
+.section.pricing .section-title {
+  color: var(--white);
+  text-shadow: 0 0 20px rgba(0, 212, 170, 0.3);
+}
+
+.section.pricing .section-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Pricing Grid */
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: var(--space-8);
   max-width: 1000px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
+/* Pricing Card Futuriste */
 .pricing-card {
-  background: var(--white);
-  border-radius: var(--radius-xl);
+  background: linear-gradient(145deg, #1e293b, #334155);
+  border-radius: 24px;
   padding: var(--space-8);
   text-align: center;
-  box-shadow: var(--shadow-md);
-  border: 2px solid transparent;
-  transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  color: var(--white);
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Effet de scan lumineux au hover */
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(102, 126, 234, 0.1), 
+    rgba(0, 212, 170, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.pricing-card:hover::before {
+  left: 100%;
 }
 
 .pricing-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-15px) scale(1.03);
+  border-color: var(--accent);
+  box-shadow: 
+    0 30px 80px rgba(0, 212, 170, 0.3),
+    0 0 0 1px rgba(0, 212, 170, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
+/* Carte Featured (Recommandée) */
 .pricing-card.featured {
-  border-color: var(--primary);
+  border-color: var(--accent);
+  background: linear-gradient(145deg, #134e4a, #1e293b);
   transform: scale(1.05);
+  position: relative;
 }
 
+.pricing-card.featured::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 24px;
+  background: linear-gradient(45deg, var(--accent), var(--primary), var(--accent));
+  z-index: -1;
+  animation: rotate-border 3s linear infinite;
+}
+
+@keyframes rotate-border {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pricing-card.featured:hover {
+  transform: scale(1.08) translateY(-15px);
+}
+
+/* Badge Recommandé */
 .pricing-card.featured::before {
   content: "⭐ RECOMMANDÉ";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  background: var(--primary);
+  background: linear-gradient(90deg, var(--accent), var(--primary));
   color: var(--white);
   padding: var(--space-3);
   font-size: var(--text-xs);
   font-weight: var(--font-bold);
   text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 3;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 0 20px rgba(0, 212, 170, 0.5);
+  animation: glow-pulse 2s ease-in-out infinite alternate;
 }
 
+@keyframes glow-pulse {
+  0% { box-shadow: 0 0 20px rgba(0, 212, 170, 0.5); }
+  100% { box-shadow: 0 0 30px rgba(0, 212, 170, 0.8); }
+}
+
+/* Titre du plan */
 .pricing-title {
   font-size: var(--text-2xl);
   font-weight: var(--font-extrabold);
-  color: var(--text-dark);
+  color: var(--white);
   margin-bottom: var(--space-3);
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
+.pricing-card:hover .pricing-title {
+  color: var(--accent);
+  text-shadow: 0 0 20px rgba(0, 212, 170, 0.5);
+}
+
+.pricing-card.featured .pricing-title {
+  margin-top: var(--space-6);
+}
+
+/* Description */
 .pricing-description {
-  color: var(--text-light);
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: var(--space-6);
   font-size: var(--text-base);
+  position: relative;
+  z-index: 2;
 }
 
+/* Prix avec effet holographique */
 .pricing-price {
   font-size: var(--text-4xl);
   font-weight: var(--font-black);
-  color: var(--primary);
+  color: var(--accent);
   margin-bottom: var(--space-2);
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 20px rgba(0, 212, 170, 0.3);
+  transition: all 0.3s ease;
 }
 
+.pricing-card:hover .pricing-price {
+  transform: scale(1.1);
+  text-shadow: 0 0 30px rgba(0, 212, 170, 0.6);
+}
+
+/* Période de paiement */
 .pricing-period {
   font-size: var(--text-sm);
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.6);
   margin-bottom: var(--space-8);
+  position: relative;
+  z-index: 2;
 }
 
+/* Features list avec puces cyber */
 .pricing-features {
   list-style: none;
   margin-bottom: var(--space-8);
   text-align: left;
+  position: relative;
+  z-index: 2;
 }
 
 .pricing-features li {
@@ -1155,36 +1289,239 @@ button {
   align-items: center;
   gap: var(--space-3);
   margin-bottom: var(--space-4);
-  color: var(--text-medium);
+  color: rgba(255, 255, 255, 0.85);
   font-size: var(--text-sm);
+  transition: all 0.3s ease;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
 }
 
 .pricing-features li::before {
-  content: "✅";
-  font-size: 16px;
+  content: "⚡";
+  font-size: 1rem;
   flex-shrink: 0;
   color: var(--accent);
+  filter: drop-shadow(0 0 5px rgba(0, 212, 170, 0.5));
+  transition: all 0.3s ease;
 }
 
+.pricing-card:hover .pricing-features li {
+  color: var(--white);
+  background: rgba(0, 212, 170, 0.05);
+}
+
+.pricing-card:hover .pricing-features li::before {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 10px rgba(0, 212, 170, 0.8));
+}
+
+/* Bouton CTA futuriste */
 .pricing-cta {
   display: inline-block;
   width: 100%;
   padding: var(--space-4) var(--space-6);
-  background: var(--primary);
+  background: linear-gradient(135deg, var(--accent), var(--primary));
   color: var(--white);
-  border: 2px solid var(--primary);
+  border: 1px solid var(--accent);
   border-radius: var(--radius-md);
   font-size: var(--text-base);
   font-weight: var(--font-bold);
   text-decoration: none;
-  transition: all var(--transition-normal);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  transition: all 0.4s ease;
   cursor: pointer;
+  box-shadow: 
+    0 0 20px rgba(0, 212, 170, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.pricing-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
 }
 
 .pricing-cta:hover {
-  background: var(--secondary);
-  border-color: var(--secondary);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  box-shadow: 
+    0 10px 30px rgba(0, 212, 170, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.pricing-cta:hover::before {
+  left: 100%;
+}
+
+/* Bouton spécial pour la carte featured */
+.pricing-card.featured .pricing-cta {
+  background: linear-gradient(135deg, var(--accent), var(--secondary));
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% { 
+    box-shadow: 
+      0 0 20px rgba(0, 212, 170, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  100% { 
+    box-shadow: 
+      0 0 40px rgba(0, 212, 170, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Effet de grille cyber en arrière-plan */
+.pricing-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(0, 212, 170, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 170, 0.02) 1px, transparent 1px);
+  background-size: 15px 15px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.pricing-card:hover::after {
+  opacity: 1;
+}
+
+/* Animation d'entrée pour les cartes */
+@keyframes cyber-pricing-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.pricing-card {
+  animation: cyber-pricing-fadeIn 0.8s ease-out;
+}
+
+/* Délai d'animation pour chaque carte */
+.pricing-card:nth-child(1) { animation-delay: 0.1s; }
+.pricing-card:nth-child(2) { animation-delay: 0.3s; }
+.pricing-card:nth-child(3) { animation-delay: 0.5s; }
+
+/* ====================================
+   📱 RESPONSIVE PRICING FUTURISTE
+   ==================================== */
+
+/* Tablettes */
+@media (max-width: 768px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    max-width: 500px;
+  }
+  
+  .pricing-card {
+    padding: var(--space-6);
+  }
+  
+  .pricing-card.featured {
+    transform: scale(1.02);
+  }
+  
+  .pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-10px);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .pricing-card {
+    padding: var(--space-5);
+    border-radius: 20px;
+  }
+  
+  .pricing-price {
+    font-size: var(--text-3xl);
+  }
+  
+  .pricing-title {
+    font-size: var(--text-xl);
+  }
+  
+  .pricing-features li {
+    font-size: var(--text-xs);
+  }
+  
+  .pricing-cta {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
+  }
+}
+
+/* ====================================
+   🎭 EFFETS SPÉCIAUX SUPPLÉMENTAIRES
+   ==================================== */
+
+/* Effet hologramme sur le prix */
+.pricing-price::before {
+  content: attr(data-price);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(0, 212, 170, 0.3);
+  transform: translate(2px, 2px);
+  z-index: -1;
+}
+
+/* Particules flottantes sur hover */
+.pricing-card.has-particles:hover::before {
+  background: 
+    radial-gradient(circle at 15% 25%, rgba(0, 212, 170, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 85% 75%, rgba(102, 126, 234, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 65% 15%, rgba(118, 75, 162, 0.1) 2px, transparent 2px);
+  background-size: 40px 40px, 25px 25px, 35px 35px;
+  animation: float-pricing-particles 15s linear infinite;
+}
+
+@keyframes float-pricing-particles {
+  0% { background-position: 0% 0%, 0% 0%, 0% 0%; }
+  100% { background-position: 100% 100%, -100% 100%, 50% -100%; }
+}
+
+/* Mode performance réduite */
+@media (prefers-reduced-motion: reduce) {
+  .pricing-card,
+  .pricing-price,
+  .pricing-cta {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .pricing-card::before,
+  .pricing-card::after,
+  .pricing-card.featured::after {
+    display: none !important;
+  }
+  
+  .section.pricing::before {
+    animation: none !important;
+  }
 }
 
 /* ====================================
